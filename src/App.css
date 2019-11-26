@@ -1,22 +1,21 @@
 .App {
   text-align: center;
+  padding: 250px 0;
+
 }
 
-.App-logo {
-  height: 40vmin;
+
+.center {
+  padding: 10px 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.PageErorMsg {
+    color: #B80000;
 }
 
-.App-link {
-  color: #09d3ac;
+.HouseFormStyle {
+  padding-top: 50px;
+  padding-right: 50px;
+  padding-bottom: 50px;
+  padding-left: 50px;
 }
