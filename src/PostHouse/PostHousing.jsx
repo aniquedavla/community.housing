@@ -7,9 +7,9 @@ class PostHousing extends React.Component {
 
     return (
 
-      <div>
+      <div className="center">
 
-      <h1>   Post your house </h1>
+      <h1 className="titleColor">   Post your house </h1>
       <HouseForm />
 
       </div>

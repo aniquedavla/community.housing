@@ -3,15 +3,15 @@ import { Button, Form, FormGroup, Label, Input, FormText, InputGroup, InputGroup
 
 const HouseForm = (props) => {
   return (
-    <div className="HouseFormStyle">
+    <div className="HouseFormStyle p">
     <Form>
       <FormGroup>
         <Label for="exampleEmail">Description</Label>
-        <Input type="email" name="email" id="exampleEmail" placeholder="enter..." />
+        <Input type="textarea" name="email" id="exampleEmail" placeholder="enter..." />
       </FormGroup>
       <FormGroup>
         <Label for="examplePassword">Address</Label>
-        <Input type="password" name="password" id="examplePassword" placeholder="enter..." />
+        <Input  name="password" id="examplePassword" placeholder="enter..." />
       </FormGroup>
       <FormGroup>
         <Label for="exampleSelect">Number of Rooms</Label>
@@ -35,14 +35,15 @@ const HouseForm = (props) => {
       </FormGroup>
       <FormGroup>
         <Label for="exampleText">Additional Information</Label>
-        <Input type="textarea" name="text" id="exampleText" />
+        <Input type="email" name="text" id="exampleText" />
       </FormGroup>
       <FormGroup>
         <Label for="exampleFile">Pictures</Label>
         <Input type="file" name="file" id="exampleFile" />
+        <Input type="file" name="file" id="exampleFile" />
+        <Input type="file" name="file" id="exampleFile" />
         <FormText color="muted">
-          This is some placeholder block-level help text for the above input.
-          It's a bit lighter and easily wraps to a new line.
+          You need to add at least one image!
         </FormText>
       </FormGroup>
       <FormGroup tag="fieldset">
@@ -61,7 +62,7 @@ const HouseForm = (props) => {
         </FormGroup>
         <FormGroup check disabled>
           <Label check>
-            <Input type="radio" name="radio1" disabled />{' '}
+            <Input type="radio" name="radio1" />{' '}
             + 1.5 year
           </Label>
         </FormGroup>
@@ -75,7 +76,7 @@ const HouseForm = (props) => {
         <Input placeholder="Amount" min={0} max={1000} type="number" step="1" />
       </InputGroup>
       </FormGroup>
-      <Button color="success">Submit</Button>{' '}
+      <Button color="success">Post it !</Button>{' '}
     </Form>
   </div>
 

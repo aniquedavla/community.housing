@@ -5,11 +5,14 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "dom": "0.0.3",
+    "google-maps-react": "^2.0.2",
+    "leaflet": "^1.6.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
-    "reactstrap": "^8.1.1"
+    "reactstrap": "^8.1.1",
+    "styled-components": "^4.4.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -2,10 +2,10 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Home from './HomePage/Home';
-import findHouse from './HomePage/findHouse';
+import findHouse from './FindHousing/findHouse';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import PageError from './HomePage/PageError';
-import PostHousing from './HomePage/PostHousing';
+import PostHousing from './PostHouse/PostHousing';
 
 
 

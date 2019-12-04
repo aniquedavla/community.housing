@@ -6,7 +6,7 @@ const Title = () => (
   <div>
 
 
-    <h2>  community.housing </h2>
+    <h2 className="titleColor">  community.housing </h2>
 
   </div>
 

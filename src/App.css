@@ -4,6 +4,15 @@
 
 }
 
+.titleColor {
+  color: #fca620;
+
+}
+
+html, body
+{
+  height: 100%;
+}
 
 .center {
   padding: 10px 0;
@@ -18,4 +27,34 @@
   padding-right: 50px;
   padding-bottom: 50px;
   padding-left: 50px;
+}
+
+.leftPanel
+{
+  min-height: 100vh;
+}
+
+.rightPanel
+{
+  min-height: 100vh;
+
+}
+
+.p {
+  border: 1.3px solid black;
+
+}
+
+.Map {
+  min-height: 100vh;
+}
+
+.LocationSearch input {
+border: 1px solid #ffca28;
+border-top-right-radius: 0.25rem;
+border-bottom-right-radius: 0.25rem;
+}
+
+.input-group.md-form.form-sm.form-2 input.amber-border {
+border: 1px solid #ffca28;
 }
