@@ -6,7 +6,7 @@ import {
 
 const HouseCard = (props) => {
   return (
-    <div>
+    <div className="HouseCard">
       <Card>
         <CardImg top width="100%" src="/Images/roomimage.jpg" alt="Card image cap" />
         <CardBody>

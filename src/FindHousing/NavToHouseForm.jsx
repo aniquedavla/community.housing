@@ -17,7 +17,7 @@ class NavToHouseForm extends React.Component {
 
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to='/PostHousing' />
+      return <Redirect to='/Register' />
     }
   }
   render() {

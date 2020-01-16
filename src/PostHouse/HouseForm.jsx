@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Label, Input, FormText, InputGroup, InputGroup
 
 const HouseForm = (props) => {
   return (
-    <div className="HouseFormStyle p">
+    <div className="HouseFormStyle ">
     <Form>
       <FormGroup>
         <Label for="exampleEmail">Description</Label>

@@ -9,10 +9,7 @@ class RoomsList extends React.Component {
     return (
       <div className="center">
       <h1 className="titleColor">   Rooms List  </h1>
-        <ul>
-          <li>Coffee</li>
-
-        </ul>
+        
         <NavToHouseForm/>
         <HouseCard />
         <HouseCard />

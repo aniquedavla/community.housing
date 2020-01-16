@@ -5,7 +5,6 @@ import Title from './Title';
 import findHouse from '../FindHousing/findHouse';
 
 
-
 class Home extends React.Component {
   render() {
 
