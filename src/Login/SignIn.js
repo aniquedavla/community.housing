@@ -43,35 +43,6 @@ const styles = theme => ({
 
 class SignIn extends React.Component {
 
-  constructor(props){
-    super(props);
-
-    this.state = {
-      user:null,
-      redirect : false
-
-    }
-
-    this.authListener = this.authListener.bind(this);
-  }
-
-  componentDidMount(){
-    this.authListener();
-  }
-
-  authListener()
-  {
-    Fire.auth().onAuthStateChanged((user) => {
-      if(user) {
-        this.this.setState({user});
-      }
-      else {
-        this.this.setState({user:null});
-      }
-    })
-
-  }
-
   login()
   {
       const email = document.getElementById("email").value;
@@ -80,7 +51,6 @@ class SignIn extends React.Component {
       Fire.auth().signInWithEmailAndPassword(email,password)
         .then((u) => {
           console.log("Success login")
-          this.renderRedirect();
         })
       .catch((err) => {
       console.log("Error: " + err.toString());
@@ -88,18 +58,6 @@ class SignIn extends React.Component {
 
   }
 
-
-  setRedirect = () => {
-    this.setState({
-      redirect: true
-    })
-  }
-
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to='/PostHousing' />
-    }
-  }
 
   render() {
     const { classes } = this.props;
@@ -109,7 +67,6 @@ class SignIn extends React.Component {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
-
           <Avatar className={classes.avatar}>
             <LockOpenIcon />
           </Avatar>

@@ -11,7 +11,7 @@ class findHouse extends React.Component {
       <div className="row ">
         <div className="col-8 leftPanel p">
           <h1 className="titleColor">
-            Find housing
+            SJSU Engineers
           </h1>
 
           <HouseMap/>

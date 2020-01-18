@@ -17,6 +17,8 @@ import { FacebookLoginButton } from 'react-social-login-buttons';
 import { GoogleLoginButton } from 'react-social-login-buttons';
 import { withStyles } from '@material-ui/core/styles';
 import Fire from '../FireDbConfig/Fire';
+import * as firebase from 'firebase';
+
 
 
 const styles = theme => ({
@@ -41,6 +43,7 @@ const styles = theme => ({
 
 class Register extends React.Component {
 
+
   signUp()
   {
       const email = document.getElementById("email").value;
@@ -48,15 +51,53 @@ class Register extends React.Component {
 
       Fire.auth().createUserWithEmailAndPassword(email,password)
         .then((u) => {
-          console.log("Success login")
+          console.log("Success signUp")
         })
       .catch((err) => {
       console.log("Error: " + err.toString());
     })
 
+    var database = Fire.database();
+    var ref = database.ref('users');
+
+    const firstName = document.getElementById("firstName").value;
+    const lastName = document.getElementById("lastName").value;
+
+    var data = {
+      email: email,
+      firstName: firstName,
+      lastName : lastName
+    }
+    ref.push(data);
   }
 
-  
+  //  registerUserInfo() {
+  //   var database = Fire.database();
+  //
+  //   var ref = database.ref('users');
+  //
+  //   // var data = {
+  //   //    email : document.getElementById("email").value,
+  //   //    password : document.getElementById("password").value,
+  //   //    firstName : document.getElementById("firstName").value,
+  //   //    lastName : document.getElementById("lastName").value,
+  //   // }
+  //
+  //   const email = document.getElementById("email").value;
+  //   const firstName = document.getElementById("firstName").value;
+  //   const lastName = document.getElementById("lastName").value;
+  //
+  //   // ref.push(data);
+  //
+  //   ref.set({
+  //   email: email,
+  //   firstName: firstName,
+  //   lastName : lastName
+  // });
+  //
+  // }
+
+
   render() {
     const { classes } = this.props;
 

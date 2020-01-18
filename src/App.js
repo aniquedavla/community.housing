@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Title from './HomePage/Title';
+import NavTopBar from './HomePage/NavTopBar';
 import Home from './HomePage/Home';
 import findHouse from './FindHousing/findHouse';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
@@ -11,7 +11,8 @@ import Register from './SignUp/Register';
 import SignIn from './Login/SignIn';
 import { Component } from 'react';
 import Fire from './FireDbConfig/Fire';
-
+import { Redirect } from 'react-router-dom';
+import 'firebase/database';
 
 class App extends Component {
 
@@ -45,15 +46,17 @@ class App extends Component {
         <BrowserRouter>
 
           <div>
+            {this.state.user ? (<Redirect to='/PostHousing'/>): (<NavTopBar/> )}
+
             <Switch>
               <Route path="/" component={Home} exact />
               <Route path="/findHouse" component={findHouse} exact />
               <Route path="/PostHousing" component={PostHousing} exact />
               <Route path="/Register" component={Register} exact />
               <Route path="/SignIn" component={SignIn} exact />
-
-
               <Route component={PageError} />
+
+
 
             </Switch>
 
@@ -66,3 +69,23 @@ class App extends Component {
 }
 
 export default App;
+
+
+// <BrowserRouter>
+//
+//   <div>
+//     <Switch>
+//       <Route path="/" component={Home} exact />
+//       <Route path="/findHouse" component={findHouse} exact />
+//       <Route path="/PostHousing" component={PostHousing} exact />
+//       <Route path="/Register" component={Register} exact />
+//       <Route path="/SignIn" component={SignIn} exact />
+//
+//
+//       <Route component={PageError} />
+//
+//     </Switch>
+//
+//   </div>
+//
+// </BrowserRouter>
