@@ -6,7 +6,6 @@
 
 .titleColor {
   color: #fca620;
-
 }
 
 html, body
@@ -23,12 +22,16 @@ html, body
 }
 
 .HouseFormStyle {
-  padding-top: 50px;
+  padding-top: 20px;
   padding-right: 50px;
   padding-bottom: 50px;
   padding-left: 50px;
 }
 
+.postHousePageTitle{
+  text-align: center;
+  color: #fca620;
+}
 
 .leftPanel
 {
@@ -38,7 +41,6 @@ html, body
 .rightPanel
 {
   min-height: 100vh;
-
 }
 
 .p {

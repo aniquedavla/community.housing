@@ -20,7 +20,6 @@ import Fire from '../FireDbConfig/Fire';
 import * as firebase from 'firebase';
 
 
-
 const styles = theme => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -41,61 +40,61 @@ const styles = theme => ({
   },
 });
 
+
 class Register extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.signUp = this.signUp.bind(this);
+    this.registerUserInfo = this.registerUserInfo.bind(this);
 
-  signUp()
-  {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-
-      Fire.auth().createUserWithEmailAndPassword(email,password)
-        .then((u) => {
-          console.log("Success signUp")
-        })
-      .catch((err) => {
-      console.log("Error: " + err.toString());
-    })
-
-    var database = Fire.database();
-    var ref = database.ref('users');
-
-    const firstName = document.getElementById("firstName").value;
-    const lastName = document.getElementById("lastName").value;
-
-    var data = {
-      email: email,
-      firstName: firstName,
-      lastName : lastName
-    }
-    ref.push(data);
   }
 
-  //  registerUserInfo() {
-  //   var database = Fire.database();
-  //
-  //   var ref = database.ref('users');
-  //
-  //   // var data = {
-  //   //    email : document.getElementById("email").value,
-  //   //    password : document.getElementById("password").value,
-  //   //    firstName : document.getElementById("firstName").value,
-  //   //    lastName : document.getElementById("lastName").value,
-  //   // }
-  //
-  //   const email = document.getElementById("email").value;
-  //   const firstName = document.getElementById("firstName").value;
-  //   const lastName = document.getElementById("lastName").value;
-  //
-  //   // ref.push(data);
-  //
-  //   ref.set({
-  //   email: email,
-  //   firstName: firstName,
-  //   lastName : lastName
-  // });
-  //
-  // }
+  signUp() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    Fire.auth().createUserWithEmailAndPassword(email, password)
+      .then((u) => {
+        console.log("Success signUp");
+        this.registerUserInfo();
+      })
+      .catch((err) => {
+        console.log("Error: " + err.toString());
+      })
+
+    // var database = Fire.database();
+    //
+    // const firstName = document.getElementById("firstName").value;
+    // const lastName = document.getElementById("lastName").value;
+    // var ref = database.ref('users');
+    // var data = {
+    //   email: email,
+    //   firstName: firstName,
+    //   lastName : lastName
+    // }
+    // ref.push(data);
+  }
+
+  registerUserInfo() {
+    var database = Fire.database();
+
+    var uid = Fire.auth().currentUser.uid;
+    const email = document.getElementById("email").value;
+    const firstName = document.getElementById("firstName").value;
+    const lastName = document.getElementById("lastName").value;
+    var ref = database.ref('users').child(uid);
+
+
+    // ref.push(data);
+
+    ref.set({
+      UserId: uid,
+      email: email,
+      firstName: firstName,
+      lastName: lastName
+    });
+  }
 
 
   render() {
@@ -170,7 +169,7 @@ class Register extends React.Component {
 
             <Button onClick={this.signUp} color="warning" size="lg" block>Register</Button>
             <FacebookLoginButton block />
-            <GoogleLoginButton block  />
+            <GoogleLoginButton block />
 
 
             <Grid container justify="flex-end">

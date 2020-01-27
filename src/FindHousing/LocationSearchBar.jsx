@@ -2,7 +2,6 @@ import React from 'react';
 import { InputGroup, InputGroupAddon, Button, Input } from 'reactstrap';
 
 
-
 class LocationSearchBar extends React.Component {
   render() {
 
@@ -18,7 +17,6 @@ class LocationSearchBar extends React.Component {
       <br />
 
       </div>
-
 
 );
 

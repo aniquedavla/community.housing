@@ -1,6 +1,6 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -43,18 +43,41 @@ const styles = theme => ({
 
 class SignIn extends React.Component {
 
-  login()
-  {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
+  constructor(props) {
+    super(props);
+    
+    this.login = this.login.bind(this);
+  }
 
-      Fire.auth().signInWithEmailAndPassword(email,password)
-        .then((u) => {
-          console.log("Success login")
-        })
+  // state = {
+  //   redirect : false
+  // }
+
+  // setRedirect(){
+  //   this.setState({
+  //     redirect: true
+  //   })
+  // }
+
+  // renderRedirect() {
+  //   if (this.state.redirect) {
+  //     return <Redirect to='/PostHousing' />
+  //   }
+  // }
+
+  login() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    Fire.auth().signInWithEmailAndPassword(email, password)
+      .then((u) => {
+        console.log("Success login")
+        
+        this.props.history.push('/PostHousing');
+      })
       .catch((err) => {
-      console.log("Error: " + err.toString());
-    })
+        console.log("Error: " + err.toString());
+      })
 
   }
 

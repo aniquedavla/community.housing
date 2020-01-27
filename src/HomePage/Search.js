@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'reactstrap';
-import {NavLink} from "react-router-dom"
-import { Redirect } from 'react-router-dom'
+import {NavLink} from "react-router-dom";
+import { Redirect } from 'react-router-dom';
 
 class Search extends React.Component {
 

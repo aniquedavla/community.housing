@@ -46,8 +46,9 @@ class App extends Component {
         <BrowserRouter>
 
           <div>
-            {this.state.user ? (<Redirect to='/PostHousing'/>): (<NavTopBar/> )}
+            {/* {this.state.user ? (<Redirect to='/PostHousing'/>): (<NavTopBar/> )} */}
 
+            <NavTopBar/> 
             <Switch>
               <Route path="/" component={Home} exact />
               <Route path="/findHouse" component={findHouse} exact />

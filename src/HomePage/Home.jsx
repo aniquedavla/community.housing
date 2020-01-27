@@ -3,6 +3,8 @@ import { Button } from 'reactstrap';
 import Search from './Search';
 import Title from './Title';
 import findHouse from '../FindHousing/findHouse';
+import NavTopBar from './NavTopBar';
+
 
 
 class Home extends React.Component {
@@ -10,7 +12,6 @@ class Home extends React.Component {
 
     return (
       <div className="App">
-
         <Title/>
 
           <form>

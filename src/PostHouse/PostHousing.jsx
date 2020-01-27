@@ -5,6 +5,7 @@ import { Button } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 
 
+
 class PostHousing extends React.Component {
 
   constructor(props) {
@@ -39,7 +40,7 @@ class PostHousing extends React.Component {
 
       <div className>
 
-      <h1 >   Post your house </h1>
+      <h1 className="postHousePageTitle">   Post your house </h1>
 
       <HouseForm />
       {this.renderRedirect()}
