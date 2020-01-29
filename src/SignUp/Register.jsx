@@ -18,6 +18,8 @@ import { GoogleLoginButton } from 'react-social-login-buttons';
 import { withStyles } from '@material-ui/core/styles';
 import Fire from '../FireDbConfig/Fire';
 import * as firebase from 'firebase';
+import { Alert } from 'reactstrap';
+
 
 
 const styles = theme => ({

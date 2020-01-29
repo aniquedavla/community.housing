@@ -70,6 +70,8 @@ class HouseForm extends React.Component {
       const additionalInfo = document.getElementById("additionalInfo").value;
       const minimumStay = document.getElementById("minimumStay").value;
       const reantCost = document.getElementById("rentCost").value;
+      const city = document.getElementById("city").value;
+      const zipcode = document.getElementById("zipcode").value;
 
       var posterName, email;
 
@@ -94,7 +96,9 @@ class HouseForm extends React.Component {
           additionalInfo: additionalInfo,
           reantCost: reantCost,
           imagesUrls: this.state.imagesUrls,
-          minimumStay: minimumStay
+          minimumStay: minimumStay,
+          city: city,
+          zipcode: zipcode
 
         }
 
