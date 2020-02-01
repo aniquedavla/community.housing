@@ -33,9 +33,12 @@ html, body
   color: #fca620;
 }
 
+/* styling rooms find housing page, right panel for rooms, left panel for the map */
 .leftPanel
 {
   min-height: 100vh;
+  overflow-y: scroll;
+
 }
 
 .rightPanel
@@ -45,7 +48,6 @@ html, body
 
 .p {
   border: 1.3px solid black;
-
 }
 
 .Map {

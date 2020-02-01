@@ -5,7 +5,8 @@ import Fire from '../FireDbConfig/Fire';
 import { Button } from '@material-ui/core';
 
 
-
+//React component on the right side of findhousing page
+//useed to load posted rooms for a certain community 
 class RoomsList extends React.Component {
 
   constructor(props) {
@@ -42,7 +43,9 @@ class RoomsList extends React.Component {
           description: posts[post].description,
           mainImage: posts[post].imagesUrls[0],
           postCity:posts[post].city,
-          rentCost:posts[post].reantCost
+          rentCost:posts[post].reantCost,
+          baths:posts[post].numberOfBaths,
+          rooms:posts[post].numberOfRooms
         });
 
         console.log(posts[post].posterName)
@@ -96,7 +99,7 @@ class RoomsList extends React.Component {
         return (
           
           <HouseCard name={post.poster} mainimageLink={post.mainImage}
-        postDescription={post.description} cityName={post.postCity} rentCost={post.rentCost} />
+        postDescription={post.description} cityName={post.postCity} rentCost={post.rentCost} rooms={post.rooms} baths={post.baths} />
 
         )
       })}

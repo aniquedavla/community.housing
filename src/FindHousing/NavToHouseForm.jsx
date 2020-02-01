@@ -3,6 +3,8 @@ import { Button } from 'reactstrap';
 import {NavLink} from "react-router-dom"
 import { Redirect } from 'react-router-dom'
 
+
+// React button component that directs the user to houseForm to post a house/ Room
 class NavToHouseForm extends React.Component {
 
   state = {
