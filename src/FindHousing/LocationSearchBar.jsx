@@ -1,17 +1,16 @@
 import React from 'react';
 import { InputGroup, InputGroupAddon, Button, Input } from 'reactstrap';
-
+import '../App.css';
 
 class LocationSearchBar extends React.Component {
   render() {
 
     return (
       <div>
-
         <InputGroup className="LocationSearch" >
         <Input placeholder="Search" />
         <InputGroupAddon addonType="append">
-          <Button color="warning"> go</Button>
+          <Button color="warning">go</Button>
         </InputGroupAddon>
       </InputGroup>
       <br />

@@ -12,6 +12,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
+import '../App.css';
 
 const NavTopBar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +20,7 @@ const NavTopBar = (props) => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div>
+    <div id="NavTopBar">
       <Navbar color="warning" light expand="md">
         <NavbarBrand href="/">Home</NavbarBrand>
         <NavbarToggler onClick={toggle} />

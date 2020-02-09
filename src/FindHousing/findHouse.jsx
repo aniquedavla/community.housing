@@ -1,31 +1,40 @@
 import React from 'react';
-import NavToHouseForm from './NavToHouseForm';
+import { Grid, GridList, GridListTile,ListSubheader} from "@material-ui/core";
+import ListHouse from './ListHouse';
 import HouseMap from './HouseMap';
 import RoomsList from './RoomsList';
-import LeafMap from './LeafMap';
+import LocationSearchBar from './LocationSearchBar';
+
+import '../App.css';
 
 //Find housing page has two sides, map and list of rooms
 //User to allow the user to search for housing in a specfic location for the chosen community
 class findHouse extends React.Component {
+  
+  
   render() {
-
-    return (<div className="container-fluid p">
-      <div className="row ">
-        <div className="col-8 leftPanel p">
-          <h1 className="titleColor">
-            SJSU Engineers
-          </h1>
-
-          <HouseMap/>
-
-        </div>
-        <div className="col-4 rightPanel p">
-          <RoomsList/>
-
-        </div>
-      </div>
-    </div>);
-  }
+    const styles = {
+      Grid: {marginTop:10, marginBottom:10}
+    }
+    return (
+      <div>
+      <Grid container className="find-house-grid-container"  styles={styles}>
+          <Grid item md spacing={1} className="left-panel" styles={styles}>
+            <h1 className="title">SJSU Engineers</h1>
+            <LocationSearchBar/>
+            <HouseMap/>
+          </Grid>
+          <Grid item md spacing={1} className="right-panel" alignItems="flex-start" justify="flex-end">
+              <GridListTile style={{ height: 'auto',  color: 'orange'}}>
+                <ListSubheader>Rooms List</ListSubheader>
+              </GridListTile>
+              <ListHouse />
+              <GridList className="housing-grid-list"><RoomsList/></GridList>
+          </Grid>
+      </Grid>
+      </div >
+      );
+    }
 }
 
 export default findHouse;

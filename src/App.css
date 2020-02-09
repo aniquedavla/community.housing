@@ -1,13 +1,17 @@
 .App {
   text-align: center;
   padding: 250px 0;
-
+  height: 100%;
+  overflow-y: hidden;
 }
 
 .titleColor {
   color: #fca620;
 }
 
+.title{
+  color: #fca620;
+}
 html, body
 {
   height: 100%;
@@ -33,31 +37,21 @@ html, body
   color: #fca620;
 }
 
-/* styling rooms find housing page, right panel for rooms, left panel for the map */
-.leftPanel
-{
-  min-height: 100vh;
-  overflow-y: scroll;
-
-}
-
-.rightPanel
-{
-  min-height: 100vh;
-}
-
-.p {
-  border: 1.3px solid black;
-}
-
 .Map {
-  min-height: 100vh;
+  min-height: 89vh;
+  min-width: 112vh;
 }
-
+.LocationSearch {
+  min-width: 110vh;
+  min-height: 0.25rem;
+  position: fixed;
+  overflow: hidden;
+}
 .LocationSearch input {
 border: 1px solid #ffca28;
 border-top-right-radius: 0.25rem;
 border-bottom-right-radius: 0.25rem;
+
 }
 
 .input-group.md-form.form-sm.form-2 input.amber-border {
@@ -66,6 +60,50 @@ border: 1px solid #ffca28;
 
 .HouseCard {
   padding: 5px;
+  width: auto;
+  height: auto;
 }
 
 /* styling sign up page */
+
+/* styling listings sections*/
+#NavTopBar {
+  width: 100%;
+  height: relative;
+  position: fixed;
+}
+
+#FindHouse {
+  padding-top: 4em;
+}
+#listings{
+  padding-top: 4em;
+}
+.RoomsList {
+  width:35%;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.left-panel{
+  width: 50%;
+  height: 100%;
+  position: fixed;
+}
+.right-panel{
+  display: flex;
+  width: 50%;
+  height: 100;
+  overflow-y: scroll;
+}
+.find-house-grid-container{
+  padding-top: 5rem;
+  height: 100%;
+}
+.housing-grid-list{
+  width: 35%;
+  height: 100%;
+}

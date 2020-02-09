@@ -45,7 +45,7 @@ class App extends Component {
     return(
         <BrowserRouter>
 
-          <div>
+          <div id="topNavBar">
             {/* {this.state.user ? (<Redirect to='/PostHousing'/>): (<NavTopBar/> )} */}
 
             <NavTopBar/> 
@@ -56,9 +56,6 @@ class App extends Component {
               <Route path="/Register" component={Register} exact />
               <Route path="/SignIn" component={SignIn} exact />
               <Route component={PageError} />
-
-
-
             </Switch>
 
           </div>

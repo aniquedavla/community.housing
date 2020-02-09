@@ -2,10 +2,11 @@ import React from 'react';
 import { Button } from 'reactstrap';
 import {NavLink} from "react-router-dom"
 import { Redirect } from 'react-router-dom'
+import '../App.css';
 
 
 // React button component that directs the user to houseForm to post a house/ Room
-class NavToHouseForm extends React.Component {
+class ListHouse extends React.Component {
 
   state = {
     redirect : false
@@ -34,4 +35,4 @@ class NavToHouseForm extends React.Component {
   }
 }
 
-export default NavToHouseForm;
+export default ListHouse;
