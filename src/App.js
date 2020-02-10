@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import NavTopBar from './HomePage/NavTopBar';
+import TopNavBar from './HomePage/TopNavBar';
 import Home from './HomePage/Home';
 import findHouse from './FindHousing/findHouse';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
@@ -12,6 +12,7 @@ import SignIn from './Login/SignIn';
 import { Component } from 'react';
 import Fire from './FireDbConfig/Fire';
 import { Redirect } from 'react-router-dom';
+import NavBarTest from './NavBarTest'
 import 'firebase/database';
 
 class App extends Component {
@@ -48,7 +49,8 @@ class App extends Component {
           <div id="topNavBar">
             {/* {this.state.user ? (<Redirect to='/PostHousing'/>): (<NavTopBar/> )} */}
 
-            <NavTopBar/> 
+            {/* <NavTopBar/>  */}
+            <TopNavBar />
             <Switch>
               <Route path="/" component={Home} exact />
               <Route path="/findHouse" component={findHouse} exact />
