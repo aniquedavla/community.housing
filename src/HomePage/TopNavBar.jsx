@@ -14,6 +14,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import logo from './logo.png'
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -75,6 +76,10 @@ const useStyles = makeStyles(theme => ({
       display: 'none',
     },
   },
+  logo: {
+    width: 78,
+    height: 43.54
+  }
 }));
 
 export default function PrimarySearchAppBar() {
@@ -158,21 +163,27 @@ export default function PrimarySearchAppBar() {
       </MenuItem>
     </Menu>
   );
-
+  // style={{marginTop: 10}}
+  const logoImg = <img src="../images/logo.png"/>
   return (
     <div className={classes.grow}>
       <AppBar position="fixed">
         <Toolbar>
+          <img
+            className={classes.logo}
+            src={logo}
+            alt="Comm Logo"
+          />
           <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
           >
-            <MenuIcon />
+            {/* <MenuIcon /> */}
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
+            SJSU Engineers
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
