@@ -17,6 +17,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import logo from './logo.png'
 
 const useStyles = makeStyles(theme => ({
+ 
   grow: {
     flexGrow: 1,
   },
@@ -25,6 +26,7 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     display: 'none',
+    color: 'white',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
@@ -167,7 +169,7 @@ export default function PrimarySearchAppBar() {
   const logoImg = <img src="../images/logo.png"/>
   return (
     <div className={classes.grow}>
-      <AppBar position="fixed">
+      <AppBar position="fixed" style={{backgroundColor:"#5c6bc0"}}>
         <Toolbar>
           <img
             className={classes.logo}

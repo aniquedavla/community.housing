@@ -38,8 +38,8 @@ html, body
 }
 
 .Map {
-  min-height: 89vh;
-  min-width: 112vh;
+  height: 100rem;
+  width: 100%;
 }
 .LocationSearch {
   min-width: 110vh;
@@ -94,18 +94,21 @@ border: 1px solid #ffca28;
   position: fixed;
 }
 .right-panel{
+  padding-top: 4rem;
   display: flex;
-  width: 40%;
+  width: 50%;
   height: 100;
-  overflow-y: scroll;
+  
 }
 .find-house-grid-container{
-  padding-top: 5rem;
   height: 100%;
 }
 .housing-grid-list{
   width: 40%;
   height: 100%;
+}
+.roomsList{
+  overflow-y: scroll;
 }
 .GridListTitle .ListSubheader {
   text-align: left;
