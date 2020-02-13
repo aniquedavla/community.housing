@@ -7,12 +7,11 @@ import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
 import DirectionsWalkIcon from '@material-ui/icons/DirectionsWalk';
-
+import PopUpMenu from './PopUpMenu';
 
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
-    maxWidth: 500,
   },
 });
 
@@ -40,6 +39,7 @@ export default function FilterListTab() {
         <Tab icon={<AttachMoneyIcon />} label="Price" />
         <Tab icon={<DirectionsWalkIcon />} label="Distance" />
         <Tab icon={<PersonPinIcon />} label="Recent" />
+        <PopUpMenu/>
       </Tabs>
     </Paper>
   );

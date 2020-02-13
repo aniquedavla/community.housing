@@ -106,10 +106,10 @@ border: 1px solid #ffca28;
 .housing-grid-list{
   width: 50%;
   height: 100%;
-}
-.FilterListTab {
-  margin-top: 5rem;
   position: fixed;
+}
+.filterListTab {
+  margin-top: 6rem;
 }
 .roomsList{
   overflow-y: scroll;
@@ -125,7 +125,3 @@ border: 1px solid #ffca28;
   height: auto;
   position: fixed;
 } */
-
-.filterListTab{
-  color: #fca620;
-}

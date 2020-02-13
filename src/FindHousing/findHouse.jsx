@@ -4,7 +4,7 @@ import ListHouse from './ListHouse';
 import HouseMap from './HouseMap';
 import RoomsList from './RoomsList';
 import LocationSearchBar from './LocationSearchBar';
-
+import PopUpMenu from './PopUpMenu';
 import '../App.css';
 import FilterListTab from './FilterListTab';
 
@@ -26,8 +26,8 @@ class findHouse extends React.Component {
             <Box display={{ xs: 'none', sm: 'none', md:"block" }}><HouseMap/></Box>
           </Grid>
           <Grid item md className="right-panel" alignItems="flex-start" justify="flex-end">
-              <GridList className="housing-grid-list" >
-                <FilterListTab className="filterListTab" position="fixed"></FilterListTab>
+              <GridList className="housing-grid-list">
+                <FilterListTab className="filterListTab"></FilterListTab>
                 {/* <GridListTile style={{ height: 'auto',  color: 'orange'}}>
                   <ListSubheader>Rooms List</ListSubheader>
                 </GridListTile> */}
