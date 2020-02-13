@@ -14,6 +14,7 @@ import Fire from './FireDbConfig/Fire';
 import { Redirect } from 'react-router-dom';
 import NavBarTest from './NavBarTest'
 import 'firebase/database';
+import HomeNavBar from './HomePage/HomeNavBar';
 
 class App extends Component {
 
@@ -50,7 +51,7 @@ class App extends Component {
             {/* {this.state.user ? (<Redirect to='/PostHousing'/>): (<NavTopBar/> )} */}
 
             {/* <NavTopBar/>  */}
-            <TopNavBar />
+            <TopNavBar></TopNavBar>
             <Switch>
               <Route path="/" component={Home} exact />
               <Route path="/findHouse" component={findHouse} exact />

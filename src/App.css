@@ -94,7 +94,7 @@ border: 1px solid #ffca28;
   position: fixed;
 }
 .right-panel{
-  padding-top: 4rem;
+  padding-top: 5rem;
   display: flex;
   width: 50%;
   height: 100;
@@ -104,8 +104,12 @@ border: 1px solid #ffca28;
   height: 100%;
 }
 .housing-grid-list{
-  width: 40%;
+  width: 50%;
   height: 100%;
+}
+.FilterListTab {
+  margin-top: 5rem;
+  position: fixed;
 }
 .roomsList{
   overflow-y: scroll;
@@ -121,3 +125,7 @@ border: 1px solid #ffca28;
   height: auto;
   position: fixed;
 } */
+
+.filterListTab{
+  color: #fca620;
+}

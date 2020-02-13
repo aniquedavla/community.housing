@@ -26,13 +26,16 @@ export default function FilterListTab() {
 
   return (
     <Paper square className={classes.root}>
-      <Tabs
+      <Tabs 
+        fixed
+        centered
         value={value}
         onChange={handleChange}
         variant="fullWidth"
         indicatorColor="secondary"
         textColor="secondary"
         aria-label="icon label tabs example"
+
       >
         <Tab icon={<AttachMoneyIcon />} label="Price" />
         <Tab icon={<DirectionsWalkIcon />} label="Distance" />

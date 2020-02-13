@@ -3,6 +3,8 @@ import { Button } from 'reactstrap';
 import {NavLink} from "react-router-dom"
 import { Redirect } from 'react-router-dom'
 import '../App.css';
+import { IconButton } from '@material-ui/core';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 
 // React button component that directs the user to houseForm to post a house/ Room
@@ -28,8 +30,7 @@ class ListHouse extends React.Component {
     return (
       <div className="center">
       {this.renderRedirect()}
-        <Button onClick={this.setRedirect} color="primary"> List Your House
-        </Button>{' '}
+        <AddCircleIcon onClick={this.setRedirect} color="inherit" fontSize="large"></AddCircleIcon>
       </div>
     );
   }

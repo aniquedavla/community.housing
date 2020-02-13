@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, GridList, GridListTile,ListSubheader} from "@material-ui/core";
+import { Grid, GridList, GridListTile,ListSubheader, Box} from "@material-ui/core";
 import ListHouse from './ListHouse';
 import HouseMap from './HouseMap';
 import RoomsList from './RoomsList';
@@ -23,16 +23,17 @@ class findHouse extends React.Component {
           <Grid item md className="left-panel" styles={styles}>
             {/* <h1 className="title">SJSU Engineers</h1>
             <LocationSearchBar/> */}
-            <HouseMap/>
+            <Box display={{ xs: 'none', sm: 'none', md:"block" }}><HouseMap/></Box>
           </Grid>
           <Grid item md className="right-panel" alignItems="flex-start" justify="flex-end">
-              <GridList className="housing-grid-list" cols={2}>
-                <FilterListTab></FilterListTab>
-                <GridListTile style={{ height: 'auto',  color: 'orange'}}>
+              <GridList className="housing-grid-list" >
+                <FilterListTab className="filterListTab" position="fixed"></FilterListTab>
+                {/* <GridListTile style={{ height: 'auto',  color: 'orange'}}>
                   <ListSubheader>Rooms List</ListSubheader>
-                </GridListTile>
-                <ListHouse />
-                  <RoomsList className="roomsList"/>
+                </GridListTile> */}
+                <RoomsList className="roomsList"/>
+                {/* <Grid item xs={12} sm={6} md={4} lg={4} xl={3}>
+                </Grid> */}
               </GridList>
           </Grid>
       </Grid>
