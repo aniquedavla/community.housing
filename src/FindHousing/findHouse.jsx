@@ -26,15 +26,15 @@ class findHouse extends React.Component {
             <Box display={{ xs: 'none', sm: 'none', md:"block" }}><HouseMap/></Box>
           </Grid>
           <Grid item md className="right-panel" alignItems="flex-start" justify="flex-end">
-              <GridList className="housing-grid-list">
+              <Grid className="left-grid-list">
                 <FilterListTab className="filterListTab"></FilterListTab>
                 {/* <GridListTile style={{ height: 'auto',  color: 'orange'}}>
                   <ListSubheader>Rooms List</ListSubheader>
                 </GridListTile> */}
-                <RoomsList className="roomsList"/>
+                <GridList className="housing-list"><RoomsList className="roomsList"/></GridList>
                 {/* <Grid item xs={12} sm={6} md={4} lg={4} xl={3}>
                 </Grid> */}
-              </GridList>
+              </Grid>
           </Grid>
       </Grid>
       </div >

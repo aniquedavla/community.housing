@@ -144,7 +144,7 @@ export default function HomeNavBar() {
             <ListHouse />
           </Badge>
         </IconButton>
-        <p>Add a listing</p>
+        <p>Add a community</p>
       </MenuItem>
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">

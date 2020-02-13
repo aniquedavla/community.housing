@@ -103,13 +103,17 @@ border: 1px solid #ffca28;
 .find-house-grid-container{
   height: 100%;
 }
-.housing-grid-list{
+.left-grid-list{
   width: 50%;
   height: 100%;
-  position: fixed;
+}
+.housing-list {
+  overflow-y: scroll;
 }
 .filterListTab {
   margin-top: 6rem;
+  position: fixed;
+  overflow-y: hidden;
 }
 .roomsList{
   overflow-y: scroll;
