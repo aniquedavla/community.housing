@@ -34,7 +34,6 @@ export default function FilterListTab() {
         indicatorColor="secondary"
         textColor="secondary"
         aria-label="icon label tabs example"
-
       >
         <Tab icon={<AttachMoneyIcon />} label="Price" />
         <Tab icon={<DirectionsWalkIcon />} label="Distance" />

@@ -26,8 +26,7 @@ class Search extends React.Component {
     return (
       <div className="center">
       {this.renderRedirect()}
-        <Button onClick={this.setRedirect} color="warning"> Search
-        </Button>{' '}
+        <Button onClick={this.setRedirect} backgroundColor="#3f51b5" size="md"> Search</Button>{' '}
       </div>
     );
   }

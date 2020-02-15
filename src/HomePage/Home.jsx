@@ -16,7 +16,7 @@ class Home extends React.Component {
         <Title/>
           <form>
             <label>
-                <input placeholder="  enter a community" style={{width: "500px", height: "35px", borderRadius: '100px', borderColor: 'black'}}
+                <input placeholder="  Search for your community" style={{width: "500px", height: "35px", borderRadius: '100px', borderColor: 'black'}}
                   type="text" name="name" />
             </label>
           </form>
