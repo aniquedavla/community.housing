@@ -30,7 +30,7 @@ export default function FilterListTab() {
         centered
         value={value}
         onChange={handleChange}
-        variant="fullWidth"
+        variant= "standard"
         indicatorColor="secondary"
         textColor="secondary"
         aria-label="icon label tabs example"

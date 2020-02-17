@@ -81,8 +81,8 @@ const useStyles = makeStyles(theme => ({
     },
   },
   logo: {
-    width: 78,
-    height: 43.54
+    width: 70.54,
+    height: 45.54
   }
 }));
 
