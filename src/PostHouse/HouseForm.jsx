@@ -50,6 +50,9 @@ class HouseForm extends React.Component {
     //console.log(this.fileArray[0]);
   }
 
+
+  //To post house to firebase
+  //this method gets called after pictures are uploaded to the array
   async postHouse() {
     var user = Fire.auth().currentUser;
     var uid = user.uid;
@@ -114,7 +117,8 @@ class HouseForm extends React.Component {
   }
 
 
-
+  //Method to store images to the database, it also creates
+  //downloadurls in order to save them in the database for each post
   storeHouseImages() {
     // const data = new FormData();
     // data.append('file', this.fileArray[0]);
@@ -178,20 +182,20 @@ class HouseForm extends React.Component {
         <Form>
           <FormGroup>
             <Label for="exampleEmail">Description</Label>
-            <Input type="textarea" name="email" id="description" placeholder="enter..." />
+            <Input type="textarea" name="field1" id="description" placeholder="enter..." />
           </FormGroup>
           <FormGroup>
             <Label for="examplePassword">Address</Label>
-            <Input name="password" id="address" placeholder="enter..." />
+            <Input name="field2" id="address" placeholder="enter..." />
           </FormGroup>
           <FormGroup>
             <Label for="examplePassword">City</Label>
-            <Input name="password" id="city" placeholder="enter..." />
+            <Input name="field3" id="city" placeholder="enter..." />
             
           </FormGroup>
           <FormGroup>
           <Label for="examplePassword">Zip Code</Label>
-            <Input name="password" id="zipcode" placeholder="enter..." />
+            <Input name="field4" id="zipcode" placeholder="enter..." />
           </FormGroup>
           <FormGroup>
             <Label for="exampleSelect">Number of Rooms</Label>

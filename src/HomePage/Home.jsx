@@ -6,7 +6,7 @@ import findHouse from '../FindHousing/findHouse';
 import NavTopBar from './NavTopBar';
 
 
-
+//home page component to let the user search a community or creat a community
 class Home extends React.Component {
   render() {
 

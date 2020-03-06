@@ -3,6 +3,7 @@ import { Button } from 'reactstrap';
 import {NavLink} from "react-router-dom";
 import { Redirect } from 'react-router-dom';
 
+//search button in the home page
 class Search extends React.Component {
 
   state = {
