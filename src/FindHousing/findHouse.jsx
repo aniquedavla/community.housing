@@ -48,7 +48,8 @@ class findHouse extends React.Component {
           <Grid container alignItems= "flex-end" justify= 'flex-end'>
             <Grid item md className="right-panel" xs={12} sm={12} md={6} lg={6}>
                 <Grid container className="left-grid-list">
-                  <FilterListTab className="filterListTab" xs={12} sm={12} md={4} lg={12}></FilterListTab>
+                  <FilterListTab className="filterListTab" xs={12} sm={6} md={6} lg={12}></FilterListTab>
+                  
                   {/* <GridListTile style={{ height: 'auto',  color: 'orange'}}>
                     <ListSubheader>Rooms List</ListSubheader>
                   </GridListTile> */}

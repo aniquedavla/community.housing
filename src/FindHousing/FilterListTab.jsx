@@ -25,21 +25,25 @@ export default function FilterListTab() {
 
   return (
     <Paper square className={classes.root}>
+      <div className="filterTab-root">
       <Tabs 
         fixed
-        centered
+        centered={true}
         value={value}
         onChange={handleChange}
-        variant= "standard"
+       
+        variant="fullWidth"
         indicatorColor="secondary"
         textColor="secondary"
         aria-label="icon label tabs example"
       >
+        <Tab icon={<PersonPinIcon />} label="Recent" />
         <Tab icon={<AttachMoneyIcon />} label="Price" />
         <Tab icon={<DirectionsWalkIcon />} label="Distance" />
-        <Tab icon={<PersonPinIcon />} label="Recent" />
+        
         <PopUpMenu/>
       </Tabs>
+      </div>
     </Paper>
   );
 }
