@@ -18,21 +18,11 @@ class findHouse extends React.Component {
     const styles = makeStyles(theme => ({
       Grid: {},
       rightPanel: {
-        // padding: '5rem',
         // display: 'flex',
-        // width: '50%',
-        // height: '100%',
-        // alignItems: 'flex-end',
-        // justify: 'flex-end',
-        // [theme.breakpoints.down('sm')]: {
-        //   width: '100%',
-        // },
-        // [theme.breakpoints.up('md')]: {
-        //   width: '50%',
-        // },
-        // [theme.breakpoints.up('lg')]: {
-        //   width: '50%',
-        // },
+        // flexWrap: 'wrap',
+        // justifyContent: 'space-around',
+        // overflow: 'hidden',
+        // backgroundColor: theme.palette.background.paper,
       },
     }));
 
@@ -49,14 +39,14 @@ class findHouse extends React.Component {
             <Grid item md className="right-panel" xs={12} sm={12} md={6} lg={6}>
                 <Grid container className="left-grid-list">
                   <FilterListTab className="filterListTab" xs={12} sm={6} md={6} lg={12}></FilterListTab>
-                  
+                  <Grid container direction="row" className="housing-list"><RoomsList className="roomsList"/></Grid>
                   {/* <GridListTile style={{ height: 'auto',  color: 'orange'}}>
                     <ListSubheader>Rooms List</ListSubheader>
                   </GridListTile> */}
-                  <GridList className="housing-list"><RoomsList className="roomsList"/></GridList>
                   {/* <Grid item xs={12} sm={6} md={4} lg={4} xl={3}>
                   </Grid> */}
                 </Grid>
+                
             </Grid>
           </Grid>
       </Grid>

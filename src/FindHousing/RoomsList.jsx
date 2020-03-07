@@ -2,7 +2,7 @@ import React from 'react';
 import ListHouse from './ListHouse';
 import HouseCard from './HouseCard';
 import Fire from '../FireDbConfig/Fire';
-import { GridList, Button } from '@material-ui/core';
+import { Grid, GridList, Button } from '@material-ui/core';
 
 
 //React component on the right side of findhousing page
@@ -93,8 +93,8 @@ class RoomsList extends React.Component {
         
           {this.state.roomsList.map((post) => {
             return (
-              <HouseCard name={post.poster} mainimageLink={post.mainImage}
-              postDescription={post.description} cityName={post.postCity} rentCost={post.rentCost} rooms={post.rooms} baths={post.baths} />
+              <Grid item><HouseCard name={post.poster} mainimageLink={post.mainImage}
+              postDescription={post.description} cityName={post.postCity} rentCost={post.rentCost} rooms={post.rooms} baths={post.baths} /></Grid>
             )}
           )}
         

@@ -11,7 +11,7 @@ import PopUpMenu from './PopUpMenu';
 
 const useStyles = makeStyles({
   root: {
-    flexGrow: 1,
+    flexGrow: 0,
   },
 });
 

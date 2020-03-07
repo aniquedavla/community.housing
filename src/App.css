@@ -59,9 +59,9 @@ border: 1px solid #ffca28;
 }
 
 .HouseCard {
-  padding: 5px;
-  width: auto;
-  height: auto;
+  padding: .5em !important;
+  width: 20em !important;
+  height: auto !important;
 }
 
 /* styling sign up page */
@@ -110,7 +110,8 @@ border: 1px solid #ffca28;
 .housing-list {
   overflow-y: scroll;
   position: relative;
-  margin: 5rem !important;
+  margin-top: 5rem !important;
+  margin-left: 1rem !important;
     /* mix-blend-mode: overlay; */
     z-index: 5;
     overflow: auto;
