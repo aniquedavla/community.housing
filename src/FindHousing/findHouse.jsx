@@ -1,5 +1,7 @@
 import React from 'react';
 import { Grid, GridList, GridListTile,ListSubheader, Box} from "@material-ui/core";
+import {Col, Row
+} from 'reactstrap';
 import ListHouse from './ListHouse';
 import HouseMap from './HouseMap';
 import RoomsList from './RoomsList';

@@ -32,11 +32,9 @@ class HouseCard extends React.Component {
             <CardTitle> <RoomIcon color="secondary"/> {this.props.cityName}</CardTitle>
             <CardSubtitle>{this.props.community}</CardSubtitle>
             <CardText> {this.props.postDescription}</CardText>
-            <CardTitle> {this.props.rooms} <HotelIcon color="primary" fontSize="large"/> {this.props.baths} <BathtubIcon color="primary" fontSize="large"/> </CardTitle>
-
+            <CardTitle> {this.props.rooms} <HotelIcon color="primary" fontSize="small"/> {this.props.baths} <BathtubIcon color="primary" fontSize="small"/> </CardTitle>
             <CardTitle> <AttachMoneyIcon style={{ color: "#4caf50" }}/> {this.props.rentCost}</CardTitle>
-
-            <Button color="info"> View </Button>{' '}
+            {/* <Button color="info"> View </Button>{' '} */}
           </CardBody>
         </Card>
       </div>
