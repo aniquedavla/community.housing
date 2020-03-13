@@ -40,6 +40,7 @@ html, body
 .Map {
   height: 100rem;
   width: 100%;
+  padding-top: 4rem !important;
 }
 .LocationSearch {
   min-width: 110vh;
@@ -59,9 +60,14 @@ border: 1px solid #ffca28;
 }
 
 .HouseCard {
-  padding: 5px;
-  width: auto;
-  height: auto;
+  padding: .5em !important;
+  max-width: 17rem !important;
+  max-height: 25.5rem !important;
+  min-width: 17rem !important;
+  min-height: 25.5rem !important;
+  width: 70%;
+  flex-grow: 1;
+  align-self: flex-start;
 }
 
 /* styling sign up page */
@@ -79,24 +85,21 @@ border: 1px solid #ffca28;
 #listings{
   padding-top: 4em;
 }
-.RoomsList {
-  width:35%;
-  min-height: 100vh;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
 
+/* left panel contains the map */
 .left-panel{
   width: 50%;
   height: 100%;
   position: fixed;
+  padding-top: 5rem !important;
+
 }
+
+/* right panel contain the post and filter tap */
 .right-panel{
   padding-top: 5rem;
   display: flex;
-  width: 50%;
+  width: 100%;
   height: 100%;
   
 }
@@ -108,9 +111,10 @@ border: 1px solid #ffca28;
   height: 100%;
 }
 .housing-list {
+  padding-top: 5rem !important;
   overflow-y: scroll;
   position: relative;
-  margin: 5rem !important;
+  /* margin: 5rem !important; */
     /* mix-blend-mode: overlay; */
     z-index: 5;
     overflow: auto;
@@ -120,6 +124,14 @@ border: 1px solid #ffca28;
   /* overflow-y: visible; */
   z-index: 10;
   background: inherit;
+  width: 100%;
+}
+.FilterListTab{
+  position: fixed;
+  /* overflow-y: visible; */
+  z-index: 10;
+  background: inherit;
+
 }
 
 .filterTab-root{
@@ -127,10 +139,21 @@ border: 1px solid #ffca28;
   z-index: 10;
   background: inherit;
   position: fixed;
+  padding: 5px;
+
+
 }
 .roomsList{
-  overflow-y: hidden;
-  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-content: flex-start;
+  flex-wrap:  wrap ;
+  padding-left: 0.5rem !important;
+
+}
+
+.userProfile {
+  padding-top: 5rem;
 }
 .GridListTitle .ListSubheader {
   text-align: left;

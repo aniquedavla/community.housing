@@ -30,7 +30,7 @@ const styles = theme => ({
     alignItems: 'center',
   },
   avatar: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(2.5),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
@@ -97,7 +97,6 @@ class Register extends React.Component {
       lastName: lastName
     });
   }
-
 
   render() {
     const { classes } = this.props;

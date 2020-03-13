@@ -3,6 +3,12 @@ import ListHouse from './ListHouse';
 import HouseCard from './HouseCard';
 import Fire from '../FireDbConfig/Fire';
 import { GridList, Button } from '@material-ui/core';
+import {
+  Card, CardImg, CardTitle, CardText, CardGroup,
+  CardSubtitle, CardBody
+} from 'reactstrap';
+import FilterListTab from './FilterListTab';
+
 
 
 //React component on the right side of findhousing page
@@ -87,18 +93,17 @@ class RoomsList extends React.Component {
 
 
     return (
-      <div className="center">
+      <div className="roomsList">
         {/* <HouseCard name="Anique" mainimageLink="https://firebasestorage.googleapis.com/v0/b/community-housing-c73c2.appspot.com/o/HouseImages%2F200397916.jpg?alt=media&token=53e06e97-c8fb-42ef-a4b4-e3e71ebeea42"
         postDescription="Hello everyone, I am looking for a two roomates to occupy one bedroom in 2b/2bath apartment......" cityName="San Jose"/> */}
-        
+
           {this.state.roomsList.map((post) => {
             return (
-              <HouseCard name={post.poster} mainimageLink={post.mainImage}
+                <HouseCard name={post.poster} mainimageLink={post.mainImage}
               postDescription={post.description} cityName={post.postCity} rentCost={post.rentCost} rooms={post.rooms} baths={post.baths} />
+              
             )}
           )}
-        
-        
       </div>
     );
   }

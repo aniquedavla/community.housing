@@ -7,7 +7,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import WcIcon from '@material-ui/icons/Wc';
 
-export default function PopupMenu() {
+export default function PopUpMenu() {
   return (
     <PopupState variant="popover" popupId="gender-popup-menu">
       {popupState => (

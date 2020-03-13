@@ -15,6 +15,8 @@ import { Redirect } from 'react-router-dom';
 import NavBarTest from './NavBarTest'
 import 'firebase/database';
 import HomeNavBar from './HomePage/HomeNavBar';
+import UserProfile from './UserProfile/UserProfile';
+
 
 class App extends Component {
 
@@ -58,6 +60,8 @@ class App extends Component {
               <Route path="/PostHousing" component={PostHousing} exact />
               <Route path="/Register" component={Register} exact />
               <Route path="/SignIn" component={SignIn} exact />
+              <Route path="/UserProfile" component={UserProfile} exact />
+
               <Route component={PageError} />
             </Switch>
 

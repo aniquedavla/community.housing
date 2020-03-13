@@ -23,20 +23,19 @@ class HouseCard extends React.Component {
 
   render() {
     return (
-      <div className="HouseCard ">
+      <div className="HouseCard">
         <Card>
         <CardTitle> <PersonIcon color="primary"/> {this.props.name} </CardTitle>
-          <CardImg top width="100%" src={this.props.mainimageLink} alt="Card image cap" />
+          <CardImg height="150px" width="50px"  src={this.props.mainimageLink} alt="Card image cap" />
 
           <CardBody>
             <CardTitle> <RoomIcon color="secondary"/> {this.props.cityName}</CardTitle>
             <CardSubtitle>{this.props.community}</CardSubtitle>
             <CardText> {this.props.postDescription}</CardText>
-            <CardTitle> {this.props.rooms} <HotelIcon color="primary" fontSize="large"/> {this.props.baths} <BathtubIcon color="primary" fontSize="large"/> </CardTitle>
+            <CardTitle> {this.props.rooms} <HotelIcon color="primary" fontSize="small"/> {this.props.baths} <BathtubIcon color="primary" fontSize="small"/> </CardTitle>
 
             <CardTitle> <AttachMoneyIcon style={{ color: "#4caf50" }}/> {this.props.rentCost}</CardTitle>
 
-            <Button color="info"> View </Button>{' '}
           </CardBody>
         </Card>
       </div>

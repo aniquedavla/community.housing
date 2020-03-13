@@ -5,6 +5,8 @@ import { Redirect } from 'react-router-dom';
 import '../App.css';
 import { IconButton } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+
 
 
 // React button component that directs the user to houseForm to post a house/ Room
@@ -22,7 +24,7 @@ class ListHouse extends React.Component {
 
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to='/Register' />
+      return <Redirect to='/UserProfile' />
     }
   }
   render() {
@@ -30,7 +32,7 @@ class ListHouse extends React.Component {
     return (
       <div className="center">
       {this.renderRedirect()}
-        <AddCircleIcon onClick={this.setRedirect} color="inherit" fontSize="large"></AddCircleIcon>
+        <AccountCircle  onClick={this.setRedirect} color="inherit" fontSize="large"> </AccountCircle>
       </div>
     );
   }

@@ -8,9 +8,7 @@ height: '100%',
 
 export class GoogleMap extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
+  
 
   render() {
 

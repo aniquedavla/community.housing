@@ -40,22 +40,14 @@ class findHouse extends React.Component {
       <div>
       <Grid container className="find-house-grid-container"  styles={styles}>
           <Grid item md className="left-panel" styles={styles}>
-            {/* <h1 className="title">SJSU Engineers</h1>
-            <LocationSearchBar/> */}
             <Box display={{ xs: 'none', sm: 'none', md:"block" }}><HouseMap/></Box>
           </Grid>
-          {/* styles.rightPanel} */}
           <Grid container alignItems= "flex-end" justify= 'flex-end'>
             <Grid item md className="right-panel" xs={12} sm={12} md={6} lg={6}>
                 <Grid container className="left-grid-list">
                   <FilterListTab className="filterListTab" xs={12} sm={6} md={6} lg={12}></FilterListTab>
-                  
-                  {/* <GridListTile style={{ height: 'auto',  color: 'orange'}}>
-                    <ListSubheader>Rooms List</ListSubheader>
-                  </GridListTile> */}
-                  <GridList className="housing-list"><RoomsList className="roomsList"/></GridList>
-                  {/* <Grid item xs={12} sm={6} md={4} lg={4} xl={3}>
-                  </Grid> */}
+                  <GridList className="housing-list" ><RoomsList /></GridList>
+                 
                 </Grid>
             </Grid>
           </Grid>

@@ -16,6 +16,9 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import logo from './logo.png'
 import ListHouse from '../FindHousing/ListHouse';
+import NavToProfile from '../UserProfile/NavToProfile';
+import { Redirect } from 'react-router-dom';
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -95,7 +98,7 @@ export default function HomeNavBar() {
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleProfileMenuOpen = event => {
-    setAnchorEl(event.currentTarget);
+    return <Redirect to='/UserProfile' />;
   };
 
   const handleMobileMenuClose = () => {
@@ -192,8 +195,8 @@ export default function HomeNavBar() {
             <IconButton aria-label="" color="inherit">
               <ListHouse></ListHouse>
             </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
+            <IconButton aria-label="show 7 new notifications" color="inherit">
+              <Badge badgeContent={7} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>

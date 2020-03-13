@@ -29,7 +29,7 @@ const styles = theme => ({
     alignItems: 'center',
   },
   avatar: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(2.5),
     backgroundColor: theme.palette.success.main,
   },
   form: {
