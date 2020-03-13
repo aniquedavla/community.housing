@@ -65,7 +65,7 @@ border: 1px solid #ffca28;
   max-height: 25.5rem !important;
   min-width: 17rem !important;
   min-height: 25.5rem !important;
-  width: 70%;
+  /* width: 70%; */
   flex-grow: 1;
   align-self: flex-start;
 }
@@ -116,33 +116,31 @@ border: 1px solid #ffca28;
   position: relative;
   /* margin: 5rem !important; */
     /* mix-blend-mode: overlay; */
-    z-index: 5;
-    overflow: auto;
+  z-index: 5;
+  overflow: auto;
 }
 .tabs {
   position: fixed;
   /* overflow-y: visible; */
   z-index: 10;
   background: inherit;
-  width: 100%;
+  width: inherit;
 }
-.FilterListTab{
+/* .FilterListTab{
   position: fixed;
-  /* overflow-y: visible; */
+  overflow-y: visible;
   z-index: 10;
   background: inherit;
+} */
 
-}
-
-.filterTab-root{
-  /* overflow-y: visible; */
+/* .filterTab-root{
+  overflow-y: visible;
   z-index: 10;
   background: inherit;
   position: fixed;
   padding: 5px;
 
-
-}
+} */
 .roomsList{
   display: flex;
   flex-direction: row;

@@ -45,9 +45,9 @@ class findHouse extends React.Component {
           <Grid container alignItems= "flex-end" justify= 'flex-end'>
             <Grid item md className="right-panel" xs={12} sm={12} md={6} lg={6}>
                 <Grid container className="left-grid-list">
-                  <FilterListTab className="filterListTab" xs={12} sm={6} md={6} lg={12}></FilterListTab>
-                  <GridList className="housing-list" ><RoomsList /></GridList>
-                 
+                {/* xs={12} sm={12} md={12} lg={12} */}
+                  <FilterListTab className="filterListTab"></FilterListTab>
+                  <GridList className="housing-list"><RoomsList /></GridList>
                 </Grid>
             </Grid>
           </Grid>

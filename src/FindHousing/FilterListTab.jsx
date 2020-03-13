@@ -13,7 +13,7 @@ import AccessAlarmsIcon from '@material-ui/icons/AccessAlarms';
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
-    maxWidth: 850,
+    maxWidth: 1000,
     
   },
 });
@@ -32,15 +32,16 @@ export default function FilterListTab() {
       <Tabs
         value={value}
         onChange={handleChange}
-        variant="fullWidth"
+        variant="standard"
         indicatorColor="secondary"
         textColor="secondary"
         aria-label="icon label tabs example"
+        sm={6}
       >
-        <Tab icon={<AccessAlarmsIcon />} label="RECENTS" />
-        <Tab icon={<FavoriteIcon />} label="FAVORITES" />
+        <Tab icon={<AccessAlarmsIcon />} label="RECENTS" />        
         <Tab icon={<PersonPinIcon />} label="NEARBY" />
-        <Tab icon={<AttachMoneyIcon />} label="Price" />
+        <Tab icon={<AttachMoneyIcon />} label="PRICE" />
+        <Tab icon={<FavoriteIcon />} label="FAVORITES" />
       </Tabs>
     </Paper>
     </div>
