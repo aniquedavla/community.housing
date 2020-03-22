@@ -40,7 +40,7 @@ class PostHousing extends React.Component {
 
       <div className>
 
-      <h1 className="postHousePageTitle">   Post your house </h1>
+      <h1 className="postHousePageTitle"> Post Your House </h1>
 
       <HouseForm />
       {this.renderRedirect()}
