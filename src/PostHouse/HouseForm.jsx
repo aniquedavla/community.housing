@@ -3,6 +3,7 @@ import { Col, Row, Button, Form, FormGroup, Label, Input, FormText, InputGroup, 
 import Fire from '../FireDbConfig/Fire';
 
 
+
 class HouseForm extends React.Component {
 
   fileArray = [];
@@ -117,6 +118,7 @@ class HouseForm extends React.Component {
   }
 
 
+
   //Method to store images to the database, it also creates
   //downloadurls in order to save them in the database for each post
   storeHouseImages() {
@@ -170,6 +172,7 @@ class HouseForm extends React.Component {
 
   render() {
 
+
     let uploadDivs = [];
     for (let i = 0; i < this.state.uploadDivsCount; i++) {
       uploadDivs.push(<Input type="file" id="houseImage3" onChange={this.handleChange(i+3)} />);
@@ -179,7 +182,7 @@ class HouseForm extends React.Component {
     return (
 
       <div className="HouseFormStyle">
-
+       
         <Form >
         <FormGroup>
             <Label for="examplePassword">Address</Label>
