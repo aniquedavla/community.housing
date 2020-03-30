@@ -24,8 +24,17 @@ class App extends Component {
     super();
     this.state = ({
       user: null,
+      showMessage: false
     });
     this.authListener = this.authListener.bind(this);
+    this.updateSuccessMessage = this.updateSuccessMessage.bind(this);
+
+  }
+
+  updateSuccessMessage(data){
+    this.setState({
+      showMessage: data
+    })
   }
 
   componentDidMount() {
@@ -56,8 +65,8 @@ class App extends Component {
             <TopNavBar></TopNavBar>
             <Switch>
               <Route path="/" component={Home} exact />
-              <Route path="/findHouse" component={findHouse} exact />
-              <Route path="/PostHousing" component={PostHousing} exact />
+              <Route path="/findHouse" render={(props) =>  <findHouse showMessage={this.state.showMessage}/>}/>
+              <Route path="/PostHousing" render={(props) =>  <PostHousing showMessageState={this.updateSuccessMessage}/>} />
               <Route path="/Register" component={Register} exact />
               <Route path="/SignIn" component={SignIn} exact />
               <Route path="/UserProfile" component={UserProfile} exact />

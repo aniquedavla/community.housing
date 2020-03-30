@@ -191,6 +191,11 @@ border: 1px solid #ffca28;
   height: auto;
   position: fixed;
 }
+
+.successMessage{
+  justify-content: flex-end;
+  background-color: black;
+}
 /* .navbartest {
   width: 100%;
   height: auto;

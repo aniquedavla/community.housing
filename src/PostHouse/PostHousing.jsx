@@ -51,8 +51,6 @@ class PostHousing extends React.Component {
       <Button onClick={() => { this.logout(); this.setRedirect();}} color="warning" size="lg" block>Logout</Button>
 
       <div>
-        <Snackbar anchorOrigin={{vertical:'center', horizontal:'center'}}
-        ></Snackbar>
         
       </div>
       </div>

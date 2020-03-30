@@ -4,6 +4,7 @@ import Search from './Search';
 import Title from './Title';
 import findHouse from '../FindHousing/findHouse';
 import HomeNavBar from './HomeNavBar';
+import Success from '../Components/SuccessMessage';
 
 
 //home page component to let the user search a community or creat a community
@@ -21,6 +22,7 @@ class Home extends React.Component {
             </label>
           </form>
         <Search/>
+        <Success/>
       </div>
 
     );

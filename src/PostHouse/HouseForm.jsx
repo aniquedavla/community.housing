@@ -1,8 +1,8 @@
 import React from 'react';
 import { Col, Row, Button, Form, FormGroup, Label, Input, FormText, InputGroup, InputGroupAddon } from 'reactstrap';
 import Fire from '../FireDbConfig/Fire';
-
-
+import {withRouter} from 'react-router-dom'
+import Success from '../Components/SuccessMessage'
 
 class HouseForm extends React.Component {
 
@@ -18,7 +18,8 @@ class HouseForm extends React.Component {
     this.state = {
       file: [],
       uploadDivsCount: 0,
-      imageUrls: []
+      imageUrls: [],
+      successMessage: false
     }
     this.handleChange = this.handleChange.bind(this);
     this.createFileUpload = this.createFileUpload.bind(this);
@@ -73,9 +74,11 @@ class HouseForm extends React.Component {
       const numberOfBaths = document.getElementById("numberOfBaths").value;
       const additionalInfo = document.getElementById("additionalInfo").value;
       const minimumStay = document.getElementById("minimumStay").value;
-      const reantCost = document.getElementById("rentCost").value;
+      const maximumStay = document.getElementById("maximumStay").value;
+      const rentCost = document.getElementById("rentCost").value;
       const city = document.getElementById("city").value;
       const zipcode = document.getElementById("zipcode").value;
+      const state = document.getElementById("state").value
 
       var posterName, email;
 
@@ -90,18 +93,20 @@ class HouseForm extends React.Component {
 
 
         var postData = {
-          email: email,
-          posterName: posterName,
-          posterId: uid,
+          //email: email,
+          //posterName: posterName,
+          //posterId: uid,
           description: description,
           address: address,
           numberOfRooms: numberOfRooms,
           numberOfBaths: numberOfBaths,
           additionalInfo: additionalInfo,
-          reantCost: reantCost,
+          rentCost: rentCost,
           imagesUrls: this.state.imagesUrls,
           minimumStay: minimumStay,
+          maximumStay: maximumStay,
           city: city,
+          state: state,
           zipcode: zipcode
 
         }
@@ -113,6 +118,7 @@ class HouseForm extends React.Component {
       });
 
     }
+   
 
 
   }
@@ -135,7 +141,19 @@ class HouseForm extends React.Component {
             //console.log(downloadUrl);
             imageUrls.push(downloadUrl);
             if (i === this.fileArray2.length - 1) {
-              this.postHouse();
+              this.postHouse()
+              .then((u) => {
+                console.log("Success posting")
+                //this.props.history.push('/findHouse');
+                console.log(this.state.successMessage)
+                this.props.updateMessage(this.state.successMessage)
+                this.setState({successMessage: true})
+                console.log(this.state.successMessage)
+
+              })
+              .catch((err) => {
+                console.log("Error: " + err.toString());
+              })
             }
           }.bind(this))
         }.bind(this));
@@ -185,26 +203,26 @@ class HouseForm extends React.Component {
        
         <Form >
         <FormGroup>
-            <Label for="examplePassword">Address</Label>
+            <Label for="address">Address</Label>
             <Input name="field2" id="address" placeholder="enter..." />
           </FormGroup>
         <Row form>
         <Col md={6}>
           <FormGroup>
-            <Label for="exampleCity">City</Label>
-            <Input type="text" name="city" id="exampleCity"/>
+            <Label for="city">City</Label>
+            <Input type="text" name="city" id="city"/>
           </FormGroup>
         </Col>
         <Col md={4}>
           <FormGroup>
-            <Label for="exampleState">State</Label>
-            <Input type="text" name="state" id="exampleState"/>
+            <Label for="state">State</Label>
+            <Input type="text" name="state" id="state"/>
           </FormGroup>
         </Col>
         <Col md={2}>
           <FormGroup>
-            <Label for="exampleZip">Zip</Label>
-            <Input type="text" name="zip" id="exampleZip"/>
+            <Label for="zipcode">Zip</Label>
+            <Input type="text" name="zip" id="zipcode"/>
           </FormGroup>  
         </Col>
       </Row>
@@ -388,4 +406,4 @@ class HouseForm extends React.Component {
 //   );
 // }
 
-export default HouseForm;
+export default withRouter(HouseForm);

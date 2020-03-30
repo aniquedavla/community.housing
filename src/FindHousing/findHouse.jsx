@@ -15,6 +15,7 @@ import { makeStyles } from '@material-ui/core/styles';
 class findHouse extends React.Component {
   
   render() {
+    console.log(this.props.showMessage)
     const styles = makeStyles(theme => ({
       Grid: {},
       rightPanel: {
