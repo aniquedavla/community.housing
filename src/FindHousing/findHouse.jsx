@@ -8,14 +8,23 @@ import PopUpMenu from './PopUpMenu';
 import '../App.css';
 import FilterListTab from './FilterListTab';
 import { makeStyles } from '@material-ui/core/styles';
+import Success from '../Components/SuccessMessage' 
 
 
 //Find housing page has two sides, map and list of rooms
 //User to allow the user to search for housing in a specfic location for the chosen community
 class findHouse extends React.Component {
-  
+
+  constructor(props){
+    super(props);
+    this.state = ({
+      successMessage: "Housing post successful!"
+    })
+  }
+
+ 
   render() {
-    console.log(this.props.showMessage)
+    console.log(this.props.learning)
     const styles = makeStyles(theme => ({
       Grid: {},
       rightPanel: {
@@ -39,6 +48,7 @@ class findHouse extends React.Component {
 
     return (
       <div>
+      {this.props.alertMessage && <Success message={this.state.successMessage}/>}
       <Grid container className="find-house-grid-container"  styles={styles}>
           <Grid item md className="left-panel" styles={styles}>
             <Box display={{ xs: 'none', sm: 'none', md:"block" }}><HouseMap/></Box>

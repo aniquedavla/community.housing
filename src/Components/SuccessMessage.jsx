@@ -4,6 +4,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
 import '../App.css'
+import { SnackbarContent } from '@material-ui/core';
 
 function Success(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -18,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function CustomizedSnackbars() {
+export default function CustomizedSnackbars(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 
@@ -36,10 +37,8 @@ export default function CustomizedSnackbars() {
 
   return (
     <div className={classes.root}>
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
-        <Success className="successMessage" onClose={handleClose} severity="success">
-            Success!
-        </Success>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'center' }} message={props.message}>
+        <Success onClose={handleClose} children={props.message}></Success>
       </Snackbar>
     </div>
   );

@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import TopNavBar from './HomePage/TopNavBar';
 import Home from './HomePage/Home';
-import findHouse from './FindHousing/findHouse';
+import FindHouse from './FindHousing/FindHouse';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import PageError from './HomePage/PageError';
 import PostHousing from './PostHouse/PostHousing';
@@ -24,7 +24,8 @@ class App extends Component {
     super();
     this.state = ({
       user: null,
-      showMessage: false
+      showMessage: true,
+      testing: "hello i am here to test a prop"
     });
     this.authListener = this.authListener.bind(this);
     this.updateSuccessMessage = this.updateSuccessMessage.bind(this);
@@ -65,8 +66,8 @@ class App extends Component {
             <TopNavBar></TopNavBar>
             <Switch>
               <Route path="/" component={Home} exact />
-              <Route path="/findHouse" render={(props) =>  <findHouse showMessage={this.state.showMessage}/>}/>
-              <Route path="/PostHousing" render={(props) =>  <PostHousing showMessageState={this.updateSuccessMessage}/>} />
+              <Route path="/findHouse" render={(props) => <FindHouse learning={this.state.testing} alertMessage={this.state.showMessage}/> }/>
+              <Route path="/PostHousing" component={PostHousing} exact  />
               <Route path="/Register" component={Register} exact />
               <Route path="/SignIn" component={SignIn} exact />
               <Route path="/UserProfile" component={UserProfile} exact />
@@ -87,6 +88,7 @@ export default App;
 
 // <BrowserRouter>
 //
+//<Route path="/findHouse" component={findHouse} exact/>
 //   <div>
 //     <Switch>
 //       <Route path="/" component={Home} exact />

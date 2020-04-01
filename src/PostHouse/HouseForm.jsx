@@ -19,7 +19,8 @@ class HouseForm extends React.Component {
       file: [],
       uploadDivsCount: 0,
       imageUrls: [],
-      successMessage: false
+      showSuccessMessage: false,
+      successMessage: "Posting Successful!"
     }
     this.handleChange = this.handleChange.bind(this);
     this.createFileUpload = this.createFileUpload.bind(this);
@@ -143,13 +144,9 @@ class HouseForm extends React.Component {
             if (i === this.fileArray2.length - 1) {
               this.postHouse()
               .then((u) => {
-                console.log("Success posting")
-                //this.props.history.push('/findHouse');
-                console.log(this.state.successMessage)
-                this.props.updateMessage(this.state.successMessage)
-                this.setState({successMessage: true})
-                console.log(this.state.successMessage)
-
+                this.setState({showSuccessMessage: true})
+                console.log("success!")
+                this.props.history.push('/findHouse')
               })
               .catch((err) => {
                 console.log("Error: " + err.toString());
@@ -200,7 +197,7 @@ class HouseForm extends React.Component {
     return (
 
       <div className="HouseFormStyle">
-       
+        {this.state.showSuccessMessage && <Success message={this.state.successMessage}/>}
         <Form >
         <FormGroup>
             <Label for="address">Address</Label>
