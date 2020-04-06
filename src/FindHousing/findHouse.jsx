@@ -13,7 +13,7 @@ import Success from '../Components/SuccessMessage'
 
 //Find housing page has two sides, map and list of rooms
 //User to allow the user to search for housing in a specfic location for the chosen community
-class findHouse extends React.Component {
+class FindHouse extends React.Component {
 
   constructor(props){
     super(props);
@@ -68,4 +68,4 @@ class findHouse extends React.Component {
     }
 }
 
-export default findHouse;
+export default FindHouse;

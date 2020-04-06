@@ -5,6 +5,9 @@ import {withRouter} from 'react-router-dom'
 import Success from '../Components/SuccessMessage'
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
+import TextField from '@material-ui/core/TextField';
+import { FormHelperText } from '@material-ui/core';
+
 
 
 class HouseForm extends React.Component {
@@ -23,11 +26,21 @@ class HouseForm extends React.Component {
       uploadDivsCount: 0,
       imageUrls: [],
       showSuccessMessage: false,
-      successMessage: "Posting Successful!"
+      successMessage: "Posting Successful!",
+      title: "",
+      description: "",
+      rent: 0,
+      address: "",
+      startDate: "",
+      address: "",
+      address: "",
+      address: ""
+
     }
     this.handleChange = this.handleChange.bind(this);
     this.createFileUpload = this.createFileUpload.bind(this);
     this.storeHouseImages = this.storeHouseImages.bind(this);
+    this.handleChange2 = this.handleChange2.bind(this); 
   }
 
   handleChange = index => e => {
@@ -127,7 +140,13 @@ class HouseForm extends React.Component {
 
   }
 
+  handleChange2(event){
+    this.setState({[event.target.name]: event.target.value})
+  }
 
+  validate() {
+
+  }
 
   //Method to store images to the database, it also creates
   //downloadurls in order to save them in the database for each post
@@ -202,13 +221,17 @@ class HouseForm extends React.Component {
       <div className="HouseFormStyle">
         {this.state.showSuccessMessage && <Success message={this.state.successMessage}/>}
         <Form >
+          
         <FormGroup>
-          <Label for="address">Title</Label>
-          <Input name="field2" id="title" placeholder="enter..." />
-        
+          <Label for="address" for="title">Title<FormHelperText error>Required</FormHelperText>
+          
+          </Label>
+          <Input name="title" id="title" placeholder="enter..." onChange={this.handleChange2}/>
+
+          
           
             <Label for="exampleEmail">Description</Label>
-            <Input type="textarea" name="field1" id="description" placeholder="enter..." />
+            <Input type="textarea" name="description" id="description" placeholder="enter..." onChange={this.handleChange2}/>
           
         
             <Label for="address">Address</Label>
@@ -317,12 +340,15 @@ class HouseForm extends React.Component {
           </FormGroup>
           {/* <Button onClick={this.postHouse} color="success">Post it !</Button>{' '} */}
           <div className="centerButton">
+
+            <Button type="submit">Testing</Button>
           
           <Button style={{backgroundColor: "#3f51b5"}} onClick={this.storeHouseImages} className="size">Post My Home</Button>{' '}
           
           </div>
           <div>
-          
+            
+          {this.state.title} ....... {this.state.description}
           </div>
         </Form>
       </div>
