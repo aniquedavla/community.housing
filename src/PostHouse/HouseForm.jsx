@@ -3,6 +3,9 @@ import { Col, Row, Button, Form, FormGroup, Label, Input, FormText, InputGroup, 
 import Fire from '../FireDbConfig/Fire';
 import {withRouter} from 'react-router-dom'
 import Success from '../Components/SuccessMessage'
+import IconButton from '@material-ui/core/IconButton';
+import AddIcon from '@material-ui/icons/Add';
+
 
 class HouseForm extends React.Component {
 
@@ -200,33 +203,41 @@ class HouseForm extends React.Component {
         {this.state.showSuccessMessage && <Success message={this.state.successMessage}/>}
         <Form >
         <FormGroup>
+          <Label for="address">Title</Label>
+          <Input name="field2" id="title" placeholder="enter..." />
+        
+          
+            <Label for="exampleEmail">Description</Label>
+            <Input type="textarea" name="field1" id="description" placeholder="enter..." />
+          
+        
             <Label for="address">Address</Label>
             <Input name="field2" id="address" placeholder="enter..." />
-          </FormGroup>
+          
         <Row form>
         <Col md={6}>
-          <FormGroup>
+          
             <Label for="city">City</Label>
             <Input type="text" name="city" id="city"/>
-          </FormGroup>
+          
         </Col>
         <Col md={4}>
-          <FormGroup>
+          
             <Label for="state">State</Label>
             <Input type="text" name="state" id="state"/>
-          </FormGroup>
+          
         </Col>
         <Col md={2}>
-          <FormGroup>
+          
             <Label for="zipcode">Zip</Label>
             <Input type="text" name="zip" id="zipcode"/>
-          </FormGroup>  
+            
         </Col>
       </Row>
           <div className="column">
           <Row>
           <Col md={6}>
-          <FormGroup>
+          
             <Label for="exampleSelect">Number of Rooms</Label>
             <Input type="select" name="select" id="numberOfRooms">
               <option>1</option>
@@ -235,10 +246,10 @@ class HouseForm extends React.Component {
               <option>4</option>
               <option>5</option>
             </Input>
-          </FormGroup>
+          
           </Col>
           <Col md={6}>
-          <FormGroup>
+          
             <Label for="exampleSelectMulti">Number of Bathrooms</Label>
             <Input type="select" name="selectMulti" id="numberOfBaths">
               <option>1</option>
@@ -247,12 +258,12 @@ class HouseForm extends React.Component {
               <option>4</option>
               <option>5</option>
             </Input>
-          </FormGroup>
+          
           </Col>
           </Row>
           <Row>
           <Col md={6}>
-          <FormGroup>
+          
             <Label for="exampleSelect">Minimum Stay</Label>
             <Input type="select" name="select" id="minimumStay">
               <option>6 Months</option>
@@ -260,42 +271,38 @@ class HouseForm extends React.Component {
               <option>+ 1.5 years</option>
               <option>No Minimum</option>
             </Input>
-          </FormGroup>
+          
           </Col>
           <Col md={6}>
-          <FormGroup>
+          
             <Label for="exampleSelect">Maximum Stay</Label>
             <Input type="select" name="select" id="maximumStay">
               <option>2 years</option>
               <option>3 years</option>
               <option>No Maximum Requirement</option>
             </Input>
-          </FormGroup>
+          
           </Col>
           </Row>
           <Row>
           <Col md={6}>
-          <FormGroup Rent Cost>
+          
             <Label Rent Cost>
               Rent Cost
         </Label>
             <InputGroup>
               <InputGroupAddon addonType="prepend">$</InputGroupAddon>
-              <Input placeholder="Amount" min={0} max={1000} type="number" step="1" id="rentCost" />
+              <Input placeholder="Amount" min={0} max={5000} type="number" step="1" id="rentCost" />
             </InputGroup>
-          </FormGroup>
+          
           </Col>
           </Row>
           </div>
-          <FormGroup>
-            <Label for="exampleEmail">Description</Label>
-            <Input type="textarea" name="field1" id="description" placeholder="enter..." />
-          </FormGroup>
-          <FormGroup>
+          
             <Label for="exampleText">Additional Information</Label>
             <Input type="email" name="text" id="additionalInfo" />
-          </FormGroup>
-          <FormGroup>
+          
+          
             <Label for="exampleFile">Pictures</Label>
 
             <Input type="file" id="houseImage1" onChange={this.handleChange(0)} />
@@ -303,17 +310,20 @@ class HouseForm extends React.Component {
 
             {uploadDivs}
 
-            <FormText color="muted">
-              You need to add at least one image!
+            <div>
 
-        </FormText>
-            <Button onClick={this.createFileUpload} color="info">Add more !</Button>{' '}
-
+          <IconButton size="small"><AddIcon style={{color: "black"}} fontSize="large" onClick={this.createFileUpload}/></IconButton>
+          </div>
           </FormGroup>
-
-          
           {/* <Button onClick={this.postHouse} color="success">Post it !</Button>{' '} */}
-          <Button onClick={this.storeHouseImages} className="size" color="success">Post My Home</Button>{' '}
+          <div className="centerButton">
+          
+          <Button style={{backgroundColor: "#3f51b5"}} onClick={this.storeHouseImages} className="size">Post My Home</Button>{' '}
+          
+          </div>
+          <div>
+          
+          </div>
         </Form>
       </div>
 

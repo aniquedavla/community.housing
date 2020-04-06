@@ -26,14 +26,13 @@ html, body
 }
 
 .HouseFormStyle {
+  
 
   /* padding-top: 20px;
   padding-right: 50px;
   padding-bottom: 50px;
   padding-left: 50px; */
 
-  margin: auto;
-  max-width: 800px;
   /* padding-top: 10px;
   padding-bottom: 10px; */
   padding: 10px;
@@ -47,26 +46,35 @@ html, body
   padding: 10px;   */
 }
 
-.size{
-  margin: 0 auto;
-  height:50px;
-  width: 775px;
+.centerButton{
+ display: flex; 
+ align-items: center;
+  
 }
 
-.testing{
-  height: 2000px;
-  width: 20000px;
+.size{
+  text-align: center;
+  margin: auto;
+  height: 50px;
+  width: 90vh;
 }
 
 .postHousePageTitle{
-  padding-top: 100px;
   text-align: center;
-  color: #fca620;
-  max-width: 800px;
+  padding-top: 100px;
+  color: #3f51b5;
   margin: auto;
   border-left: solid 1px #D3D3D3;
   border-right: solid 1px #D3D3D3;
+  
+}
 
+.postHousePageContainer{
+  
+  margin: auto;
+  max-width: 90vh;
+  height: 100vh;
+  overflow-x: hidden;
 }
 
 .Map {
@@ -192,10 +200,7 @@ border: 1px solid #ffca28;
   position: fixed;
 }
 
-.successMessage{
-  justify-content: flex-end;
-  background-color: black;
-}
+
 /* .navbartest {
   width: 100%;
   height: auto;

@@ -3,6 +3,7 @@ import HouseForm from './HouseForm';
 import Fire from '../FireDbConfig/Fire';
 import { Button } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
+import '../App.css'
 import CustomizedSnackbars from '../Components/Alerts'
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -41,18 +42,14 @@ class PostHousing extends React.Component {
 
     return (
 
-      <div className>
+      <div className="postHousePageContainer">
       
         
       <h1 className="postHousePageTitle"> Post Your House </h1>
 
       <HouseForm />
+     
       {this.renderRedirect()}
-      <Button onClick={() => { this.logout(); this.setRedirect();}} color="warning" size="lg" block>Logout</Button>
-
-      <div>
-        
-      </div>
       </div>
 
 
