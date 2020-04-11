@@ -200,6 +200,10 @@ border: 1px solid #ffca28;
   position: fixed;
 }
 
+#error{
+  border-color: red;
+}
+
 
 /* .navbartest {
   width: 100%;

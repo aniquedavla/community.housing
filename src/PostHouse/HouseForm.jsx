@@ -7,6 +7,10 @@ import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import TextField from '@material-ui/core/TextField';
 import { FormHelperText } from '@material-ui/core';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import InputBase from '@material-ui/core/InputBase';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+
 
 
 
@@ -34,13 +38,15 @@ class HouseForm extends React.Component {
       startDate: "",
       address: "",
       address: "",
-      address: ""
+      address: "",
+      showError: "error"
 
     }
     this.handleChange = this.handleChange.bind(this);
     this.createFileUpload = this.createFileUpload.bind(this);
     this.storeHouseImages = this.storeHouseImages.bind(this);
     this.handleChange2 = this.handleChange2.bind(this); 
+    this.onClickTesting = this.onClickTesting.bind(this);
   }
 
   handleChange = index => e => {
@@ -148,6 +154,20 @@ class HouseForm extends React.Component {
 
   }
 
+  onClickTesting(e){
+    e.preventDefault()
+    console.log('i am ehre')
+    if(this.state.showError==="error"){
+      this.setState({
+        showError: ''
+      })
+    }else{
+    this.setState({
+      showError: 'error'
+    })
+  }
+  }
+
   //Method to store images to the database, it also creates
   //downloadurls in order to save them in the database for each post
   storeHouseImages() {
@@ -208,7 +228,7 @@ class HouseForm extends React.Component {
 
 
   render() {
-
+    console.log(this.state.showError)
 
     let uploadDivs = [];
     for (let i = 0; i < this.state.uploadDivsCount; i++) {
@@ -221,14 +241,42 @@ class HouseForm extends React.Component {
       <div className="HouseFormStyle">
         {this.state.showSuccessMessage && <Success message={this.state.successMessage}/>}
         <Form >
-          
-        <FormGroup>
-          <Label for="address" for="title">Title<FormHelperText error>Required</FormHelperText>
-          
-          </Label>
-          <Input name="title" id="title" placeholder="enter..." onChange={this.handleChange2}/>
+        <OutlinedInput
+            style={{borderTopColor: 'red'}}
+            startAdornment={<InputAdornment position="start">$</InputAdornment>}
+          />
 
+          <div >
+          <Label style={{display: "block", marginBottom:'-5px'}}>Title*</Label>
+          <TextField startAdornment={<InputAdornment position="start">$</InputAdornment>} margin="dense" helperText="" placeholder="enter..." variant="outlined" error={false} style={{width: "55vh", marginBottom:'20px'}}></TextField>
+          </div>
+
+          <div >
+          <Label style={{display: "block", marginBottom:'-5px', fontSize: '20px'}}>Bigger*</Label>
+          <TextField margin="dense" helperText="" placeholder="enter..." variant="outlined" error={false} style={{width: "30vh", marginBottom:'100px'}}></TextField>
+          </div>
+
+          <div style={{display:'inline-block', paddingRight:'10px'}} >
+          <Label style={{display: "block", marginBottom:'2px'}}>Title*</Label>
+          <TextField helperText="" placeholder="enter..." variant="outlined" error={false} margin="none" style={{width: "30vh"}}></TextField>
           
+          </div>
+
+          <div style={{display:'inline-block'}}>
+          <Label style={{display: "block", marginBottom:'2px'}}>Title*</Label>
+          <TextField helperText="" placeholder="enter..." variant="outlined" error={false} margin="none" style={{width: "30vh"}}></TextField>
+          </div>
+
+         
+
+        <FormGroup>
+    
+          <div>
+          <Label >Title </Label>
+          <FormHelperText error>Required</FormHelperText>
+          <TextField name="title" id="title" placeholder="enter..." onChange={this.handleChange2} id={this.state.showError} style={{width: "30vh"}} />
+
+          </div>
           
             <Label for="exampleEmail">Description</Label>
             <Input type="textarea" name="description" id="description" placeholder="enter..." onChange={this.handleChange2}/>
@@ -315,7 +363,7 @@ class HouseForm extends React.Component {
         </Label>
             <InputGroup>
               <InputGroupAddon addonType="prepend">$</InputGroupAddon>
-              <Input placeholder="Amount" min={0} max={5000} type="number" step="1" id="rentCost" />
+              <Input style={{borderColor: 'red'}} placeholder="Amount" min={0} max={5000} type="number" step="1" id="rentCost" />
             </InputGroup>
           
           </Col>
