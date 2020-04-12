@@ -10,7 +10,7 @@ import { FormHelperText } from '@material-ui/core';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import InputBase from '@material-ui/core/InputBase';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
-
+import MaterialUIPickers from '../Components/DatePicker'
 
 
 
@@ -241,32 +241,41 @@ class HouseForm extends React.Component {
       <div className="HouseFormStyle">
         {this.state.showSuccessMessage && <Success message={this.state.successMessage}/>}
         <Form >
-        <OutlinedInput
-            style={{borderTopColor: 'red'}}
-            startAdornment={<InputAdornment position="start">$</InputAdornment>}
-          />
 
-          <div >
+          <div style={{marginBottom:'30px'}}>
           <Label style={{display: "block", marginBottom:'-5px'}}>Title*</Label>
-          <TextField startAdornment={<InputAdornment position="start">$</InputAdornment>} margin="dense" helperText="" placeholder="enter..." variant="outlined" error={false} style={{width: "55vh", marginBottom:'20px'}}></TextField>
+          <TextField margin="dense" helperText="" placeholder="enter..." variant="outlined" error={true} style={{width: "40vh"}}></TextField>
           </div>
 
-          <div >
-          <Label style={{display: "block", marginBottom:'-5px', fontSize: '20px'}}>Bigger*</Label>
-          <TextField margin="dense" helperText="" placeholder="enter..." variant="outlined" error={false} style={{width: "30vh", marginBottom:'100px'}}></TextField>
+          <div style={{marginBottom:'30px'}} >
+          <Label style={{display: "block", marginBottom:'-10px'}}>Description*</Label>
+          <TextField margin="normal" height="" helperText="" placeholder="enter..." variant="outlined" error={false} fullWidth ></TextField>
+          </div>
+
+          <div style={{marginBottom:'10px'}}>
+          <Label style={{display: "block", marginBottom:'-10px'}}>Rent*</Label>
+          <TextField margin="normal" helperText="" placeholder="enter..." variant="outlined" error={false} style={{width: "55vh"}}></TextField>
           </div>
 
           <div style={{display:'inline-block', paddingRight:'10px'}} >
           <Label style={{display: "block", marginBottom:'2px'}}>Title*</Label>
           <TextField helperText="" placeholder="enter..." variant="outlined" error={false} margin="none" style={{width: "30vh"}}></TextField>
-          
           </div>
 
-          <div style={{display:'inline-block'}}>
+          <div style={{display:'inline-block', marginBottom: "10px"}}>
           <Label style={{display: "block", marginBottom:'2px'}}>Title*</Label>
           <TextField helperText="" placeholder="enter..." variant="outlined" error={false} margin="none" style={{width: "30vh"}}></TextField>
           </div>
 
+          <div style={{marginBottom:'10px'}}>
+          <Label style={{display: "block", marginBottom:'-10px'}}>Address*</Label>
+          <TextField margin="normal" helperText="" placeholder="enter..." variant="outlined" error={false} style={{width: "55vh"}}></TextField>
+          </div>
+
+          <div style={{marginBottom:'10px'}}>
+          <Label style={{display: "block", marginBottom:'-10px'}}>Start Date*</Label>
+          <MaterialUIPickers></MaterialUIPickers>
+          </div>
          
 
         <FormGroup>
