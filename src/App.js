@@ -33,6 +33,9 @@ class App extends Component {
   }
 
   updateSuccessMessage(data){
+    console.log("successsadsadasdsa!")
+    console.log("this is the state rn", this.state.showMessage)
+    console.log(data)
     this.setState({
       showMessage: data
     })
@@ -55,11 +58,15 @@ class App extends Component {
     });
   }
 
+
+  
+
   render(){
     return(
         <BrowserRouter>
 
           <div id="topNavBar">
+            
             {/* {this.state.user ? (<Redirect to='/PostHousing'/>): (<NavTopBar/> )} */}
 
             {/* <NavTopBar/>  */}
@@ -67,7 +74,7 @@ class App extends Component {
             <Switch>
               <Route path="/" component={Home} exact />
               <Route path="/findHouse" render={(props) => <FindHouse learning={this.state.testing} alertMessage={this.state.showMessage}/> }/>
-              <Route path="/PostHousing" component={PostHousing} exact  />
+              <Route path="/PostHousing" render={(props) => (<PostHousing {...this.props} changeStatus={this.updateSuccessMessage}/>)}  />
               <Route path="/Register" component={Register} exact />
               <Route path="/SignIn" component={SignIn} exact />
               <Route path="/UserProfile" component={UserProfile} exact />

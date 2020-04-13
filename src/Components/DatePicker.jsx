@@ -20,7 +20,7 @@ export default function MaterialUIPickers() {
      
         <KeyboardDatePicker
           disableToolbar
-          variant="dialog"
+          variant="dialogue"
           inputVariant="outlined"
           format="MM/dd/yyyy"
           margin="normal"

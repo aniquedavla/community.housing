@@ -11,7 +11,8 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import InputBase from '@material-ui/core/InputBase';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import MaterialUIPickers from '../Components/DatePicker'
-
+import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 
 
 class HouseForm extends React.Component {
@@ -31,8 +32,12 @@ class HouseForm extends React.Component {
       imageUrls: [],
       showSuccessMessage: false,
       successMessage: "Posting Successful!",
-      title: "",
-      description: "",
+      title:"",
+      showTitleError: false,
+      titleErrorMessage:"",
+      description:"",
+      descriptionErrorMessage:"",
+      showDescriptionError: false,
       rent: 0,
       address: "",
       startDate: "",
@@ -74,6 +79,7 @@ class HouseForm extends React.Component {
     this.setState({ uploadDivsCount: counter });
     //console.log(this.fileArray[0]);
   }
+
 
 
   //To post house to firebase
@@ -151,21 +157,33 @@ class HouseForm extends React.Component {
   }
 
   validate() {
-
+    this.setState({
+      showTitleError: false,
+      titleErrorMessage:"",
+      descriptionErrorMessage:"",
+      showDescriptionError: false,
+    })
+    if (this.state.title.length < 1){
+      this.setState({
+        titleErrorMessage: "Required",
+        showTitleError: true
+      })
+    }
+    if(this.state.description.length < 10){
+      this.setState({
+        descriptionErrorMessage: "Description has to be at least 10 characters long",
+        showDescriptionError: true
+      })
+    }
   }
 
   onClickTesting(e){
     e.preventDefault()
-    console.log('i am ehre')
-    if(this.state.showError==="error"){
-      this.setState({
-        showError: ''
-      })
-    }else{
-    this.setState({
-      showError: 'error'
-    })
-  }
+    console.log("LOOK AT ME")
+    this.props.changeStatus(true)
+    this.validate()
+    console.log(this.state.titleErrorMessage, this.state.showTitleError)
+    this.props.history.push('/findhouse')
   }
 
   //Method to store images to the database, it also creates
@@ -228,97 +246,151 @@ class HouseForm extends React.Component {
 
 
   render() {
-    console.log(this.state.showError)
-
+    //console.log(this.state.showError)
+    //uploadDivs.push(<img alt=" " width="100" height="100" src={this.state.file[i+3]} />);
+    
     let uploadDivs = [];
     for (let i = 0; i < this.state.uploadDivsCount; i++) {
-      uploadDivs.push(<Input type="file" id="houseImage3" onChange={this.handleChange(i+3)} />);
-      uploadDivs.push(<img alt=" " width="100" height="100" src={this.state.file[i+3]} />);
+      uploadDivs.push(<Input type="file" id="houseImage3" onChange={this.handleChange(i+3)} style={{marginBottom:"5px"}} />);
     }
 
     return (
 
       <div className="HouseFormStyle">
         {this.state.showSuccessMessage && <Success message={this.state.successMessage}/>}
-        <Form >
-
-          <div style={{marginBottom:'30px'}}>
-          <Label style={{display: "block", marginBottom:'-5px'}}>Title*</Label>
-          <TextField margin="dense" helperText="" placeholder="enter..." variant="outlined" error={true} style={{width: "40vh"}}></TextField>
-          </div>
-
-          <div style={{marginBottom:'30px'}} >
-          <Label style={{display: "block", marginBottom:'-10px'}}>Description*</Label>
-          <TextField margin="normal" height="" helperText="" placeholder="enter..." variant="outlined" error={false} fullWidth ></TextField>
-          </div>
-
-          <div style={{marginBottom:'10px'}}>
-          <Label style={{display: "block", marginBottom:'-10px'}}>Rent*</Label>
-          <TextField margin="normal" helperText="" placeholder="enter..." variant="outlined" error={false} style={{width: "55vh"}}></TextField>
-          </div>
-
-          <div style={{display:'inline-block', paddingRight:'10px'}} >
-          <Label style={{display: "block", marginBottom:'2px'}}>Title*</Label>
-          <TextField helperText="" placeholder="enter..." variant="outlined" error={false} margin="none" style={{width: "30vh"}}></TextField>
-          </div>
-
-          <div style={{display:'inline-block', marginBottom: "10px"}}>
-          <Label style={{display: "block", marginBottom:'2px'}}>Title*</Label>
-          <TextField helperText="" placeholder="enter..." variant="outlined" error={false} margin="none" style={{width: "30vh"}}></TextField>
-          </div>
-
-          <div style={{marginBottom:'10px'}}>
-          <Label style={{display: "block", marginBottom:'-10px'}}>Address*</Label>
-          <TextField margin="normal" helperText="" placeholder="enter..." variant="outlined" error={false} style={{width: "55vh"}}></TextField>
-          </div>
-
-          <div style={{marginBottom:'10px'}}>
-          <Label style={{display: "block", marginBottom:'-10px'}}>Start Date*</Label>
-          <MaterialUIPickers></MaterialUIPickers>
-          </div>
-         
-
-        <FormGroup>
-    
-          <div>
-          <Label >Title </Label>
-          <FormHelperText error>Required</FormHelperText>
-          <TextField name="title" id="title" placeholder="enter..." onChange={this.handleChange2} id={this.state.showError} style={{width: "30vh"}} />
-
-          </div>
-          
-            <Label for="exampleEmail">Description</Label>
-            <Input type="textarea" name="description" id="description" placeholder="enter..." onChange={this.handleChange2}/>
-          
+        <Form onSubmit={this.onClickTesting} >
         
-            <Label for="address">Address</Label>
-            <Input name="field2" id="address" placeholder="enter..." />
+          <div style={{marginBottom:'10px'}}>
           
-        <Row form>
-        <Col md={6}>
+            <Label style={{display: "block", marginBottom:'-5px'}}>Title*</Label>
+            <TextField 
+              margin="dense" 
+              helperText={this.state.titleErrorMessage}
+              placeholder="enter..." 
+              variant="outlined" 
+              error={this.state.showTitleError} 
+              style={{width: "55vh"}}
+              name="title"
+              onChange={this.handleChange2}
+            />
+          </div>
           
-            <Label for="city">City</Label>
-            <Input type="text" name="city" id="city"/>
-          
-        </Col>
-        <Col md={4}>
-          
-            <Label for="state">State</Label>
-            <Input type="text" name="state" id="state"/>
-          
-        </Col>
-        <Col md={2}>
-          
-            <Label for="zipcode">Zip</Label>
-            <Input type="text" name="zip" id="zipcode"/>
-            
-        </Col>
-      </Row>
-          <div className="column">
-          <Row>
-          <Col md={6}>
-          
-            <Label for="exampleSelect">Number of Rooms</Label>
+
+          <div style={{marginBottom:'10px'}} >
+            <Label style={{display: "block", marginBottom:'-10px'}}>Description*</Label>
+            <TextField 
+              multiline={true} 
+              rows="3" 
+              margin="normal"  
+              helperText={this.state.descriptionErrorMessage} 
+              placeholder="enter..." variant="outlined" 
+              error={this.state.showDescriptionError} 
+              fullWidth
+              name="description"
+              onChange={this.handleChange2}
+            />
+          </div>
+
+          <Row style={{marginBottom:'10px'}}>
+          <Col>
+            <Label 
+              style={{ marginBottom:'-5px'}}>
+              Rental Cost*
+            </Label>
+            <TextField
+              error={false}
+              helperText=""
+              margin="dense"
+              InputProps={{
+                startAdornment: <InputAdornment position="start">$</InputAdornment>,
+              }}
+              variant="outlined"
+              
+            />
+            </Col>
+
+          <Col >
+            <Label style={{ marginBottom:'-5px'}}>
+              Minimum Stay*
+            </Label>
+            <TextField 
+              helperText="" 
+              InputProps={{
+                endAdornment: <InputAdornment position="end">months</InputAdornment>,
+              }}
+              variant="outlined" 
+              error={false} 
+              margin="dense" 
+            />
+            </Col>
+
+          <Col >
+            <Label style={{ marginBottom:'-5px'}}>Maximum Stay*</Label>
+            <TextField helperText="" 
+             InputProps={{
+              endAdornment: <InputAdornment position="end">months</InputAdornment>,
+            }}
+            variant="outlined" error={false} margin="dense"
+            ></TextField>
+            </Col>
+          </Row>
+
+          <div style={{marginBottom:'10px'}}>
+            <Label style={{display: "block", marginBottom:'-2px'}}>Address Line 1*</Label>
+            <TextField margin="dense" helperText="" placeholder="enter..." variant="outlined" error={false} style={{width: "55vh"}}></TextField>
+          </div>
+
+          <div style={{marginBottom:'10px'}}>
+            <Label style={{display: "block", marginBottom:'-2px'}}>Address Line 2 (optional)</Label>
+            <TextField margin="dense" helperText="" placeholder="Apartment, suite, unit etc." variant="outlined" error={false} style={{width: "55vh"}}></TextField>
+          </div>
+
+          <Row style={{marginBottom:'10px'}}>
+          <Col>
+            <Label 
+              style={{ marginBottom:'-5px'}}>
+              ZIP Code*
+            </Label>
+            <TextField
+              error={false}
+              helperText=""
+              margin="dense"
+              
+              variant="outlined"
+              
+            />
+            </Col>
+
+          <Col >
+            <Label style={{ marginBottom:'-5px'}}>
+              State*
+            </Label>
+            <TextField 
+              helperText="" 
+              
+              variant="outlined" 
+              error={false} 
+              margin="dense" 
+            />
+            </Col>
+
+          <Col >
+            <Label style={{ marginBottom:'-5px'}}>City*</Label>
+            <TextField helperText="" 
+             
+            variant="outlined" error={false} margin="dense"
+            ></TextField>
+            </Col>
+          </Row>
+
+          <div style={{marginBottom:'10px'}}>
+            <Label style={{display: "block", marginBottom:'-10px'}}>Start date*</Label>
+            <MaterialUIPickers></MaterialUIPickers>
+          </div>
+
+          <Row style={{marginBottom:'10px'}}>
+          <Col md={6} >
+            <Label for="exampleSelect">Number of rooms</Label>
             <Input type="select" name="select" id="numberOfRooms">
               <option>1</option>
               <option>2</option>
@@ -328,9 +400,10 @@ class HouseForm extends React.Component {
             </Input>
           
           </Col>
+
           <Col md={6}>
           
-            <Label for="exampleSelectMulti">Number of Bathrooms</Label>
+            <Label for="exampleSelectMulti">Number of bathrooms</Label>
             <Input type="select" name="selectMulti" id="numberOfBaths">
               <option>1</option>
               <option>2</option>
@@ -340,71 +413,30 @@ class HouseForm extends React.Component {
             </Input>
           
           </Col>
-          </Row>
-          <Row>
-          <Col md={6}>
+          </Row>  
           
-            <Label for="exampleSelect">Minimum Stay</Label>
-            <Input type="select" name="select" id="minimumStay">
-              <option>6 Months</option>
-              <option>1 year</option>
-              <option>+ 1.5 years</option>
-              <option>No Minimum</option>
-            </Input>
-          
-          </Col>
-          <Col md={6}>
-          
-            <Label for="exampleSelect">Maximum Stay</Label>
-            <Input type="select" name="select" id="maximumStay">
-              <option>2 years</option>
-              <option>3 years</option>
-              <option>No Maximum Requirement</option>
-            </Input>
-          
-          </Col>
-          </Row>
-          <Row>
-          <Col md={6}>
-          
-            <Label Rent Cost>
-              Rent Cost
-        </Label>
-            <InputGroup>
-              <InputGroupAddon addonType="prepend">$</InputGroupAddon>
-              <Input style={{borderColor: 'red'}} placeholder="Amount" min={0} max={5000} type="number" step="1" id="rentCost" />
-            </InputGroup>
-          
-          </Col>
-          </Row>
+          <div style={{marginBottom:'10px'}} >
+            <Label style={{display: "block", marginBottom:'-10px'}}>Additional information</Label>
+            <TextField multiline={true} rows="2" margin="normal" height="" helperText="" placeholder="enter..." variant="outlined" error={false} fullWidth ></TextField>
           </div>
-          
-            <Label for="exampleText">Additional Information</Label>
-            <Input type="email" name="text" id="additionalInfo" />
-          
-          
-            <Label for="exampleFile">Pictures</Label>
 
-            <Input type="file" id="houseImage1" onChange={this.handleChange(0)} />
-            <img alt=" " width="100" height="100" src={this.state.file[0]} />
-
-            {uploadDivs}
-
-            <div>
-
-          <IconButton size="small"><AddIcon style={{color: "black"}} fontSize="large" onClick={this.createFileUpload}/></IconButton>
-          </div>
-          </FormGroup>
+          <Label>Pictures</Label>
+          <Input style={{marginBottom:"5px"}} type="file" id="houseImage1" onChange={this.handleChange(0)} />
+          {uploadDivs}
+          <div>
+          <IconButton size="small" style={{marginBottom: "30px"}}><AddAPhotoIcon style={{color: "grey"}} fontSize="large" onClick={this.createFileUpload}/></IconButton>
+          </div>     
+        
           {/* <Button onClick={this.postHouse} color="success">Post it !</Button>{' '} */}
-          <div className="centerButton">
+          <div className="centerButton" style={{marginBottom:"100px"}}>
 
-            <Button type="submit">Testing</Button>
+          
           
           <Button style={{backgroundColor: "#3f51b5"}} onClick={this.storeHouseImages} className="size">Post My Home</Button>{' '}
           
           </div>
           <div>
-            
+          <Button type="submit">Testing</Button> 
           {this.state.title} ....... {this.state.description}
           </div>
         </Form>

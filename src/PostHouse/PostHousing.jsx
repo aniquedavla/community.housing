@@ -38,6 +38,8 @@ class PostHousing extends React.Component {
       }
     }
 
+  
+
   render() {
 
     return (
@@ -46,8 +48,7 @@ class PostHousing extends React.Component {
       
         
       <h1 className="postHousePageTitle"> Post Your House </h1>
-
-      <HouseForm />
+      <HouseForm changeStatus={this.props.changeStatus}/>
      
       {this.renderRedirect()}
       </div>
