@@ -13,6 +13,7 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import MaterialUIPickers from '../Components/DatePicker'
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+import FormattedInputs from '../Components/NumberField'
 
 
 class HouseForm extends React.Component {
@@ -39,11 +40,25 @@ class HouseForm extends React.Component {
       descriptionErrorMessage:"",
       showDescriptionError: false,
       rent: 0,
+      rentErrorMessage: "",
+      showRentError: false,
+      minStay: "",
+      minStayErrorMessage: '',
+      showMinStayError: false,
       address: "",
+      addressErrorMessage: '',
+      showAddressError: false,
+      zipCode: "",
+      zipCodeErrorMessage: "",
+      showZipCodeError: false,
+      state: "",
+      stateErrorMessage: "",
+      showStateError: false,
+      city: "",
+      cityErrorMessage: "",
+      showCityError: false,
       startDate: "",
-      address: "",
-      address: "",
-      address: "",
+      phoneNumber: "",
       showError: "error"
 
     }
@@ -102,7 +117,6 @@ class HouseForm extends React.Component {
       const numberOfRooms = document.getElementById("numberOfRooms").value;
       const numberOfBaths = document.getElementById("numberOfBaths").value;
       const additionalInfo = document.getElementById("additionalInfo").value;
-      const minimumStay = document.getElementById("minimumStay").value;
       const maximumStay = document.getElementById("maximumStay").value;
       const rentCost = document.getElementById("rentCost").value;
       const city = document.getElementById("city").value;
@@ -132,7 +146,6 @@ class HouseForm extends React.Component {
           additionalInfo: additionalInfo,
           rentCost: rentCost,
           imagesUrls: this.state.imagesUrls,
-          minimumStay: minimumStay,
           maximumStay: maximumStay,
           city: city,
           state: state,
@@ -153,7 +166,9 @@ class HouseForm extends React.Component {
   }
 
   handleChange2(event){
-    this.setState({[event.target.name]: event.target.value})
+    this.setState({
+      [event.target.name]: event.target.value
+    })
   }
 
   validate() {
@@ -162,6 +177,18 @@ class HouseForm extends React.Component {
       titleErrorMessage:"",
       descriptionErrorMessage:"",
       showDescriptionError: false,
+      rentErrorMessage:"",
+      showRentError: false,
+      showMinStayError: false,
+      minStayErrorMessage: "",
+      showAddressError: false,
+      addressErrorMessage: "",
+      showZipCodeError: false,
+      zipCodeErrorMessage: "",
+      showStateError: false,
+      stateErrorMessage: "",
+      showCityError: false,
+      cityErrorMessage: ""
     })
     if (this.state.title.length < 1){
       this.setState({
@@ -169,10 +196,46 @@ class HouseForm extends React.Component {
         showTitleError: true
       })
     }
-    if(this.state.description.length < 10){
+    if(this.state.description.length < 1){
       this.setState({
-        descriptionErrorMessage: "Description has to be at least 10 characters long",
+        descriptionErrorMessage: "Required",
         showDescriptionError: true
+      })
+    }
+    if(this.state.rent <= 0){
+      this.setState({
+        rentErrorMessage: "Required",
+        showRentError: true
+      })
+    }
+    if(this.state.minStay.length < 1){
+      this.setState({
+        minStayErrorMessage: "Required",
+        showMinStayError: true
+      })
+    }
+    if(this.state.address.length < 1){
+      this.setState({
+        addressErrorMessage: "Required",
+        showAddressError: true
+      })
+    }
+    if(this.state.zipCode.length < 1){
+      this.setState({
+        zipCodeErrorMessage: "Required",
+        showZipCodeError: true
+      })
+    }
+    if(this.state.state.length < 1){
+      this.setState({
+        stateErrorMessage: "Required",
+        showStateError: true
+      })
+    }
+    if(this.state.city.length < 1){
+      this.setState({
+        cityErrorMessage: "Required",
+        showCityError: true
       })
     }
   }
@@ -183,7 +246,6 @@ class HouseForm extends React.Component {
     this.props.changeStatus(true)
     this.validate()
     console.log(this.state.titleErrorMessage, this.state.showTitleError)
-    this.props.history.push('/findhouse')
   }
 
   //Method to store images to the database, it also creates
@@ -247,11 +309,12 @@ class HouseForm extends React.Component {
 
   render() {
     //console.log(this.state.showError)
-    //uploadDivs.push(<img alt=" " width="100" height="100" src={this.state.file[i+3]} />);
     
     let uploadDivs = [];
     for (let i = 0; i < this.state.uploadDivsCount; i++) {
       uploadDivs.push(<Input type="file" id="houseImage3" onChange={this.handleChange(i+3)} style={{marginBottom:"5px"}} />);
+      uploadDivs.push(<img alt=" " width="100" height="100" src={this.state.file[i+3]} />);
+
     }
 
     return (
@@ -291,58 +354,57 @@ class HouseForm extends React.Component {
             />
           </div>
 
-          <Row style={{marginBottom:'10px'}}>
-          <Col>
-            <Label 
-              style={{ marginBottom:'-5px'}}>
+          <div style={{display: 'flex', marginBottom: '10px'}}>
+              <div>
+              <Label 
+              style={{marginBottom:'-10px'}}>
               Rental Cost*
             </Label>
             <TextField
-              error={false}
-              helperText=""
+              type="number"
+              error={this.state.showRentError}
+              helperText={this.state.rentErrorMessage}
               margin="dense"
+              name="rent"
               InputProps={{
                 startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                endAdornment: <InputAdornment position="end">monthly</InputAdornment>
               }}
-              variant="outlined"
-              
+              variant="outlined" 
+              onChange={this.handleChange2}            
             />
-            </Col>
+            </div>
 
-          <Col >
-            <Label style={{ marginBottom:'-5px'}}>
+            <div>
+            <Label 
+            style={{marginBottom:'-10px'}}>
               Minimum Stay*
             </Label>
             <TextField 
-              helperText="" 
+              helperText={this.state.minStayErrorMessage}
+              name="minStay"
+              margin="dense" 
               InputProps={{
                 endAdornment: <InputAdornment position="end">months</InputAdornment>,
               }}
               variant="outlined" 
-              error={false} 
-              margin="dense" 
+              error={this.state.showMinStayError} 
+              onChange={this.handleChange2}
             />
-            </Col>
-
-          <Col >
-            <Label style={{ marginBottom:'-5px'}}>Maximum Stay*</Label>
-            <TextField helperText="" 
-             InputProps={{
-              endAdornment: <InputAdornment position="end">months</InputAdornment>,
-            }}
-            variant="outlined" error={false} margin="dense"
-            ></TextField>
-            </Col>
-          </Row>
-
-          <div style={{marginBottom:'10px'}}>
-            <Label style={{display: "block", marginBottom:'-2px'}}>Address Line 1*</Label>
-            <TextField margin="dense" helperText="" placeholder="enter..." variant="outlined" error={false} style={{width: "55vh"}}></TextField>
+            </div>
           </div>
 
           <div style={{marginBottom:'10px'}}>
-            <Label style={{display: "block", marginBottom:'-2px'}}>Address Line 2 (optional)</Label>
-            <TextField margin="dense" helperText="" placeholder="Apartment, suite, unit etc." variant="outlined" error={false} style={{width: "55vh"}}></TextField>
+            <Label style={{display: "block", marginBottom:'-2px'}}>Address*</Label>
+            <TextField margin="dense" 
+            helperText={this.state.addressErrorMessage}
+            name="address" 
+            placeholder="enter..." 
+            variant="outlined" 
+            error={this.state.showAddressError} 
+            style={{width: "55vh"}}
+            onChange={this.handleChange2}
+           />
           </div>
 
           <Row style={{marginBottom:'10px'}}>
@@ -352,12 +414,12 @@ class HouseForm extends React.Component {
               ZIP Code*
             </Label>
             <TextField
-              error={false}
-              helperText=""
+              name="zipCode"
+              error={this.state.showZipCodeError}
+              helperText={this.state.zipCodeErrorMessage}
               margin="dense"
-              
               variant="outlined"
-              
+              onChange={this.handleChange2}
             />
             </Col>
 
@@ -365,20 +427,25 @@ class HouseForm extends React.Component {
             <Label style={{ marginBottom:'-5px'}}>
               State*
             </Label>
-            <TextField 
-              helperText="" 
-              
+            <TextField
+              name="state" 
+              helperText={this.state.stateErrorMessage} 
               variant="outlined" 
-              error={false} 
+              error={this.state.showStateError} 
               margin="dense" 
+              onChange={this.handleChange2}
             />
             </Col>
 
           <Col >
             <Label style={{ marginBottom:'-5px'}}>City*</Label>
             <TextField helperText="" 
-             
-            variant="outlined" error={false} margin="dense"
+            name="city"
+            variant="outlined" 
+            helperText={this.state.cityErrorMessage}
+            error={this.state.showCityError} 
+            margin="dense"
+            onChange={this.handleChange2}
             ></TextField>
             </Col>
           </Row>
@@ -397,12 +464,10 @@ class HouseForm extends React.Component {
               <option>3</option>
               <option>4</option>
               <option>5</option>
-            </Input>
-          
+            </Input>          
           </Col>
 
           <Col md={6}>
-          
             <Label for="exampleSelectMulti">Number of bathrooms</Label>
             <Input type="select" name="selectMulti" id="numberOfBaths">
               <option>1</option>
@@ -414,18 +479,35 @@ class HouseForm extends React.Component {
           
           </Col>
           </Row>  
-          
+
+          <div style={{marginBottom: "10px"}}>
+            <Label style={{marginBottom: "0px"}}>Phone number</Label>
+            <FormattedInputs 
+              name="phoneNumber" 
+              onChange={this.handleChange2}
+              style={{float: "left"}}
+
+            />
+          </div>
+
           <div style={{marginBottom:'10px'}} >
             <Label style={{display: "block", marginBottom:'-10px'}}>Additional information</Label>
             <TextField multiline={true} rows="2" margin="normal" height="" helperText="" placeholder="enter..." variant="outlined" error={false} fullWidth ></TextField>
           </div>
-
+          
           <Label>Pictures</Label>
           <Input style={{marginBottom:"5px"}} type="file" id="houseImage1" onChange={this.handleChange(0)} />
+          <img alt=" " width="100" height="100" id="houseImage1" src={this.state.file[0]}/>
+          
+          <div style={{display: "flex", justifyContent: "start"}}>
+          <div style={{display: "flex", flexDirection: "column"}}>
           {uploadDivs}
+          </div>
+          </div>
+          
           <div>
-          <IconButton size="small" style={{marginBottom: "30px"}}><AddAPhotoIcon style={{color: "grey"}} fontSize="large" onClick={this.createFileUpload}/></IconButton>
-          </div>     
+          <IconButton disableFocusRipple={true} size="small" style={{marginBottom: "30px"}}><AddAPhotoIcon style={{color: "grey"}} fontSize="large" onClick={this.createFileUpload}/></IconButton>
+          </div> 
         
           {/* <Button onClick={this.postHouse} color="success">Post it !</Button>{' '} */}
           <div className="centerButton" style={{marginBottom:"100px"}}>
@@ -439,6 +521,7 @@ class HouseForm extends React.Component {
           <Button type="submit">Testing</Button> 
           {this.state.title} ....... {this.state.description}
           </div>
+
         </Form>
       </div>
 
