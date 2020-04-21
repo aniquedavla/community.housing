@@ -55,7 +55,7 @@ class App extends Component {
             <TopNavBar></TopNavBar>
             <Switch>
               <Route path="/" component={Home} exact />
-              <Route path="/findHouse" component={FindHouse} exact />
+              <Route path="/FindHouse" component={FindHouse} exact />
               <Route path="/PostHousing" component={PostHousing} exact />
               <Route path="/Register" component={Register} exact />
               <Route path="/SignIn" component={SignIn} exact />

@@ -30,7 +30,7 @@ class Search extends React.Component {
 
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to='/findHouse' />
+      return <Redirect to='/FindHouse' />
     }
   }
   render() {
