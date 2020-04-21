@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import TopNavBar from './HomePage/TopNavBar';
 import Home from './HomePage/Home';
-import findHouse from './FindHousing/findHouse';
+import FindHouse from './FindHousing/FindHouse';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import PageError from './HomePage/PageError';
 import PostHousing from './PostHouse/PostHousing';
@@ -34,7 +34,6 @@ class App extends Component {
 
   authListener() {
     Fire.auth().onAuthStateChanged((user) => {
-      console.log(user);
       if (user) {
         this.setState({ user });
         localStorage.setItem('user', user.uid);
@@ -56,7 +55,7 @@ class App extends Component {
             <TopNavBar></TopNavBar>
             <Switch>
               <Route path="/" component={Home} exact />
-              <Route path="/findHouse" component={findHouse} exact />
+              <Route path="/findHouse" component={FindHouse} exact />
               <Route path="/PostHousing" component={PostHousing} exact />
               <Route path="/Register" component={Register} exact />
               <Route path="/SignIn" component={SignIn} exact />

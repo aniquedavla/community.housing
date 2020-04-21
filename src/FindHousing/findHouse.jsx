@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, GridList, GridListTile,ListSubheader, Box} from "@material-ui/core";
+import { Grid, GridList, GridListTile, ListSubheader, Box } from "@material-ui/core";
 import ListHouse from './ListHouse';
 import HouseMap from './HouseMap';
 import RoomsList from './RoomsList';
@@ -13,7 +13,13 @@ import { makeStyles } from '@material-ui/core/styles';
 //Find housing page has two sides, map and list of rooms
 //User to allow the user to search for housing in a specfic location for the chosen community
 class findHouse extends React.Component {
-  
+
+  constructor(props)
+  {
+    super(props);
+    this.roomsListElement = React.createRef();
+  }
+
   render() {
     const styles = makeStyles(theme => ({
       Grid: {},
@@ -36,25 +42,35 @@ class findHouse extends React.Component {
       },
     }));
 
+    const sortHouses = () => {
+      this.roomsListElement.current.sortHomes();
+    }
+
+    const sortRecentRoom = () => {
+      this.roomsListElement.current.sortRecentHomes();
+    }
+
     return (
+
+
       <div>
-      <Grid container className="find-house-grid-container"  styles={styles}>
+        <Grid container className="find-house-grid-container" styles={styles}>
           <Grid item md className="left-panel" styles={styles}>
-            <Box display={{ xs: 'none', sm: 'none', md:"block" }}><HouseMap/></Box>
+            <Box display={{ xs: 'none', sm: 'none', md: "block" }}><HouseMap /></Box>
           </Grid>
-          <Grid container alignItems= "flex-end" justify= 'flex-end'>
+          <Grid container alignItems="flex-end" justify='flex-end'>
             <Grid item md className="right-panel" xs={12} sm={12} md={6} lg={6}>
-                <Grid container className="left-grid-list">
+              <Grid container className="left-grid-list">
                 {/* xs={12} sm={12} md={12} lg={12} */}
-                  <FilterListTab className="filterListTab"></FilterListTab>
-                  <GridList className="housing-list"><RoomsList /></GridList>
-                </Grid>
+                <FilterListTab className="filterListTab" test="hello" sortRecentFun={sortRecentRoom} sortFun={sortHouses}></FilterListTab>
+                <GridList className="housing-list"><RoomsList ref={this.roomsListElement} /></GridList>
+              </Grid>
             </Grid>
           </Grid>
-      </Grid>
+        </Grid>
       </div >
-      );
-    }
+    );
+  }
 }
 
 export default findHouse;

@@ -8,6 +8,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import AccessAlarmsIcon from '@material-ui/icons/AccessAlarms';
+import RoomsList from './RoomsList';
 
 
 const useStyles = makeStyles({
@@ -18,13 +19,35 @@ const useStyles = makeStyles({
   },
 });
 
-export default function FilterListTab() {
+export default function FilterListTab(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    console.log(newValue);
+    if(newValue === 2)
+    {
+      sortByPrice();
+    }
+
+    if(newValue === 0)
+    {
+      sortRecent();
+    }
   };
+
+  const sortByPrice = () =>
+  {
+    
+    props.sortFun();
+  }
+
+  const sortRecent = () =>
+  {
+    
+    props.sortRecentFun();
+  }
 
   return (
     <div className="tabs">
@@ -38,7 +61,7 @@ export default function FilterListTab() {
         aria-label="icon label tabs example"
         sm={6}
       >
-        <Tab icon={<AccessAlarmsIcon />} label="RECENTS" />        
+        <Tab  icon={<AccessAlarmsIcon />} label="RECENTS" />        
         <Tab icon={<PersonPinIcon />} label="NEARBY" />
         <Tab icon={<AttachMoneyIcon />} label="PRICE" />
         <Tab icon={<FavoriteIcon />} label="FAVORITES" />

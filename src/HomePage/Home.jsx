@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'reactstrap';
 import Search from './Search';
 import Title from './Title';
-import findHouse from '../FindHousing/findHouse';
+import FindHouse from '../FindHousing/FindHouse';
 import HomeNavBar from './HomeNavBar';
 
 
@@ -16,7 +16,7 @@ class Home extends React.Component {
         <Title/>
           <form>
             <label>
-                <input placeholder="  Search for your community" style={{width: "500px", height: "35px", borderRadius: '100px', borderColor: 'black'}}
+                <input placeholder="  Search for your community" style={{width: "500px", height: "35px", borderRadius: '100px', borderColor: '#3f51b5'}}
                   type="text" name="name" />
             </label>
           </form>

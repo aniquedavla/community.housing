@@ -73,7 +73,15 @@ class SignIn extends React.Component {
       .then((u) => {
         console.log("Success login")
         
-        this.props.history.push('/PostHousing');
+        this.setState({user: u.user});
+        const redirectUrl = this.props.location.state.redirectUrl;
+
+        if (redirectUrl) {
+          this.props.history.push(redirectUrl);
+
+        } else {
+          this.props.history.push('/');
+        }
       })
       .catch((err) => {
         console.log("Error: " + err.toString());

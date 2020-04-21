@@ -8,6 +8,8 @@ import {
   CardSubtitle, CardBody
 } from 'reactstrap';
 import FilterListTab from './FilterListTab';
+import { ThemeConsumer } from 'styled-components';
+
 
 
 
@@ -19,13 +21,15 @@ class RoomsList extends React.Component {
     super(props)
 
     this.state = {
-      roomsList: []
+      roomsList: [],
+      recentRooms: []
     }
+
+    // this.sort = this.sort.bind(this);
 
   }
 
-  componentDidMount()
-  {
+  componentDidMount() {
     var database = Fire.database();
 
     let rooms = [];
@@ -45,25 +49,110 @@ class RoomsList extends React.Component {
         //   user: items[item].user
         // });
         rooms.push({
-          poster:posts[post].posterName,
+          poster: posts[post].posterName,
           description: posts[post].description,
           mainImage: posts[post].imagesUrls[0],
-          postCity:posts[post].city,
-          rentCost:posts[post].reantCost,
-          baths:posts[post].numberOfBaths,
-          rooms:posts[post].numberOfRooms
+          postCity: posts[post].city,
+          rentCost: posts[post].reantCost,
+          baths: posts[post].numberOfBaths,
+          rooms: posts[post].numberOfRooms
         });
 
         console.log(posts[post].posterName)
         console.log(posts[post].imagesUrls[0])
       }
 
+      rooms.reverse();
+
       this.setState({
-        roomsList: rooms
+        roomsList: rooms,
+        recentRooms: rooms
       })
 
     });
+
+
   }
+
+   compare(a, b) {
+    // Use toUpperCase() to ignore character casing
+    const bandA = a.rentCost;
+    const bandB = b.rentCost;
+  
+    let comparison = 0;
+    if (bandA > bandB) {
+      comparison = 1;
+    } else if (bandA < bandB) {
+      comparison = -1;
+    }
+
+
+    return comparison;
+  }
+
+  compareDesc(a, b) {
+    // Use toUpperCase() to ignore character casing
+    const bandA = a.rentCost;
+    const bandB = b.rentCost;
+  
+    let comparison = 0;
+    if (bandA > bandB) {
+      comparison = 1;
+    } else if (bandA < bandB) {
+      comparison = -1;
+    }
+
+    return comparison * -1;
+  }
+  sortHomes() {
+    if(this.state.sortOrder) {
+      if (this.state.sortOrder === 'asc') 
+      {
+        this.setState({
+          sortOrder : 'desc'
+        });
+      } else 
+      {
+        this.setState({
+          sortOrder : 'asc'
+        });
+      }
+
+    } else {
+      this.setState({
+        sortOrder : 'asc'
+      });
+    }
+    console.log("sorting2");
+    if (this.state) {
+
+
+      let sortedHouses = [].concat(this.state.roomsList);
+
+      if(this.state.sortOrder === 'desc')
+      {
+        sortedHouses.sort(this.compareDesc);
+      }
+      else
+      {
+        sortedHouses.sort(this.compare);
+      }
+      console.log(sortedHouses);
+      console.log("updating state");
+      this.setState({
+        roomsList: sortedHouses
+      });
+    }
+  };
+
+  sortRecentHomes()
+  {
+    this.setState({
+      roomsList: this.state.recentRooms
+      
+    });
+  }
+
   render() {
 
     // let housePosts = [];
@@ -88,7 +177,7 @@ class RoomsList extends React.Component {
     // let houseList = [];
     // for (let i = 0; i < 2; i++) {
     //   houseList.push(<HouseCard name={} />);
-      
+
     // }
 
 
@@ -97,13 +186,14 @@ class RoomsList extends React.Component {
         {/* <HouseCard name="Anique" mainimageLink="https://firebasestorage.googleapis.com/v0/b/community-housing-c73c2.appspot.com/o/HouseImages%2F200397916.jpg?alt=media&token=53e06e97-c8fb-42ef-a4b4-e3e71ebeea42"
         postDescription="Hello everyone, I am looking for a two roomates to occupy one bedroom in 2b/2bath apartment......" cityName="San Jose"/> */}
 
-          {this.state.roomsList.map((post) => {
-            return (
-                <HouseCard name={post.poster} mainimageLink={post.mainImage}
+        {this.state.roomsList.map((post) => {
+          return (
+            <HouseCard name={post.poster} mainimageLink={post.mainImage}
               postDescription={post.description} cityName={post.postCity} rentCost={post.rentCost} rooms={post.rooms} baths={post.baths} />
-              
-            )}
-          )}
+
+          )
+        }
+        )}
       </div>
     );
   }
