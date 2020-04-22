@@ -14,6 +14,7 @@ import MaterialUIPickers from '../Components/DatePicker'
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import FormattedInputs from '../Components/NumberField'
+import Failure from '../Components/FailMessage'
 
 
 class HouseForm extends React.Component {
@@ -31,7 +32,7 @@ class HouseForm extends React.Component {
       file: [],
       uploadDivsCount: 0,
       imageUrls: [],
-      showSuccessMessage: false,
+      showFailureMessage: false,
       successMessage: "Posting Successful!",
       title:"",
       showTitleError: false,
@@ -59,7 +60,9 @@ class HouseForm extends React.Component {
       showCityError: false,
       startDate: "",
       phoneNumber: "",
-      showError: "error"
+      showError: "error",
+      photoRequiredError: false,
+    
 
     }
     this.handleChange = this.handleChange.bind(this);
@@ -99,33 +102,48 @@ class HouseForm extends React.Component {
 
   //To post house to firebase
   //this method gets called after pictures are uploaded to the array
+
+  // if (i === this.fileArray2.length - 1) {
+  
+  // }
+
+
   async postHouse() {
     var user = Fire.auth().currentUser;
-    var uid = user.uid;
+    if(user===null){
+    console.log("null")
+    }
+    else{
+      var uid = user.uid;
+    }
+    
     // TO DO : add error checking before posting 
 
 
     if (user != null) {
+
       // console.log(user.email);
       // console.log(user.uid);
       // console.log(document.readyState);
 
       var database = Fire.database();
 
-      const description = document.getElementById("description").value;
-      const address = document.getElementById("address").value;
-      const numberOfRooms = document.getElementById("numberOfRooms").value;
-      const numberOfBaths = document.getElementById("numberOfBaths").value;
-      const additionalInfo = document.getElementById("additionalInfo").value;
-      const maximumStay = document.getElementById("maximumStay").value;
-      const rentCost = document.getElementById("rentCost").value;
-      const city = document.getElementById("city").value;
-      const zipcode = document.getElementById("zipcode").value;
-      const state = document.getElementById("state").value
+      // const description = document.getElementById("description").value;
+      // const address = document.getElementById("address").value;
+       const numberOfRooms = document.getElementById("numberOfRooms").value;
+       const numberOfBaths = document.getElementById("numberOfBaths").value;
+      // const additionalInfo = document.getElementById("additionalInfo").value;
+      // const maximumStay = document.getElementById("maximumStay").value;
+      // const rentCost = document.getElementById("rentCost").value;
+      // const city = document.getElementById("city").value;
+      // const zipcode = document.getElementById("zipcode").value;
+      // const state = document.getElementById("state").value
 
-      var posterName, email;
+        var posterName, email;
 
-      var ref = database.ref('users').child(uid).on('value', (snapshot) => {
+        this.storeHouseImages();
+
+        var ref = database.ref('users').child(uid).on('value', (snapshot) => {
         // console.log(snapshot.child('firstName').val());
         // console.log(snapshot.child('lastName').val());
         // console.log(snapshot.child('email').val());
@@ -139,21 +157,28 @@ class HouseForm extends React.Component {
           //email: email,
           //posterName: posterName,
           //posterId: uid,
-          description: description,
-          address: address,
+          title: this.state.title,
+          description: this.state.description,
+          rentCost: this.state.rent,
+          minimumStay: this.state.minStay,
+          address: this.state.address,
+          zipCode: this.state.zipCode,
+          state: this.state.state,
+          city: this.state.city,
           numberOfRooms: numberOfRooms,
           numberOfBaths: numberOfBaths,
-          additionalInfo: additionalInfo,
-          rentCost: rentCost,
-          imagesUrls: this.state.imagesUrls,
-          maximumStay: maximumStay,
-          city: city,
-          state: state,
-          zipcode: zipcode
-
+          imagesUrls: this.state.imagesUrls
         }
 
         storeRef.push(postData)
+        .then((u) => {
+          this.setState({showSuccessMessage: true})
+          console.log("success!")
+          this.props.history.push('/findHouse')
+        })
+        .catch((err) => {
+          console.log("Error: " + err.toString());
+        })
         //var postKey = storeRef.push().key;
         //console.log(storeRef.push().key)
         //this.storeHouseImages(postKey);
@@ -167,11 +192,13 @@ class HouseForm extends React.Component {
 
   handleChange2(event){
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
+      startDate: event.date.formate()
     })
   }
 
   validate() {
+    let isError = false;
     this.setState({
       showTitleError: false,
       titleErrorMessage:"",
@@ -188,64 +215,90 @@ class HouseForm extends React.Component {
       showStateError: false,
       stateErrorMessage: "",
       showCityError: false,
-      cityErrorMessage: ""
+      cityErrorMessage: "",
+      photoRequiredError: false
     })
+
+    if (this.state.file.length===0) {
+      isError = true
+      this.setState({
+        photoRequiredError: true
+      })
+    }
     if (this.state.title.length < 1){
+      isError = true
       this.setState({
         titleErrorMessage: "Required",
         showTitleError: true
       })
     }
     if(this.state.description.length < 1){
+      isError = true
       this.setState({
         descriptionErrorMessage: "Required",
         showDescriptionError: true
       })
     }
     if(this.state.rent <= 0){
+      isError = true
       this.setState({
         rentErrorMessage: "Required",
         showRentError: true
       })
     }
     if(this.state.minStay.length < 1){
+      isError = true
       this.setState({
         minStayErrorMessage: "Required",
         showMinStayError: true
       })
     }
     if(this.state.address.length < 1){
+      isError = true
       this.setState({
         addressErrorMessage: "Required",
         showAddressError: true
       })
     }
     if(this.state.zipCode.length < 1){
+      isError = true
       this.setState({
         zipCodeErrorMessage: "Required",
         showZipCodeError: true
       })
     }
     if(this.state.state.length < 1){
+      isError = true
       this.setState({
         stateErrorMessage: "Required",
         showStateError: true
       })
     }
     if(this.state.city.length < 1){
+      isError = true
       this.setState({
         cityErrorMessage: "Required",
         showCityError: true
       })
     }
+    return isError;
   }
 
   onClickTesting(e){
     e.preventDefault()
+    let error = this.validate()
+    if(error === true){
+      this.setState({
+        showFailureMessage: true
+      })
     console.log("LOOK AT ME")
     this.props.changeStatus(true)
-    this.validate()
     console.log(this.state.titleErrorMessage, this.state.showTitleError)
+    }
+    else{
+      console.log("aldsfjakl;jfl;akjfl;sd")
+      this.postHouse()
+    }
   }
 
   //Method to store images to the database, it also creates
@@ -260,20 +313,9 @@ class HouseForm extends React.Component {
         var imageName = this.fileArray2[i].name;
         var storageRef = Fire.storage().ref('/HouseImages/' + imageName);
         var uploadTask = storageRef.put(this.fileArray2[i]).then(function (snapshot) {
-          var imageUrl = snapshot.ref.getDownloadURL().then(function (downloadUrl) {
+        var imageUrl = snapshot.ref.getDownloadURL().then(function (downloadUrl) {
             //console.log(downloadUrl);
             imageUrls.push(downloadUrl);
-            if (i === this.fileArray2.length - 1) {
-              this.postHouse()
-              .then((u) => {
-                this.setState({showSuccessMessage: true})
-                console.log("success!")
-                this.props.history.push('/findHouse')
-              })
-              .catch((err) => {
-                console.log("Error: " + err.toString());
-              })
-            }
           }.bind(this))
         }.bind(this));
       }
@@ -315,12 +357,16 @@ class HouseForm extends React.Component {
       uploadDivs.push(<Input type="file" id="houseImage3" onChange={this.handleChange(i+3)} style={{marginBottom:"5px"}} />);
       uploadDivs.push(<img alt=" " width="100" height="100" src={this.state.file[i+3]} />);
 
+
     }
+
+    console.log(this.state.file.length, "dlkjsflkjafk")
 
     return (
 
       <div className="HouseFormStyle">
-        {this.state.showSuccessMessage && <Success message={this.state.successMessage}/>}
+        {this.state.showFailureMessage && <Failure/>}
+        
         <Form onSubmit={this.onClickTesting} >
         
           <div style={{marginBottom:'10px'}}>
@@ -452,7 +498,7 @@ class HouseForm extends React.Component {
 
           <div style={{marginBottom:'10px'}}>
             <Label style={{display: "block", marginBottom:'-10px'}}>Start date*</Label>
-            <MaterialUIPickers></MaterialUIPickers>
+            <MaterialUIPickers name="startDate" onChange={this.handleChange2}></MaterialUIPickers>
           </div>
 
           <Row style={{marginBottom:'10px'}}>
@@ -497,6 +543,7 @@ class HouseForm extends React.Component {
           
           <Label>Pictures</Label>
           <Input style={{marginBottom:"5px"}} type="file" id="houseImage1" onChange={this.handleChange(0)} />
+            {this.state.photoRequiredError && <FormHelperText error={true}>&nbsp;Required</FormHelperText>}
           <img alt=" " width="100" height="100" id="houseImage1" src={this.state.file[0]}/>
           
           <div style={{display: "flex", justifyContent: "start"}}>
@@ -519,7 +566,7 @@ class HouseForm extends React.Component {
           </div>
           <div>
           <Button type="submit">Testing</Button> 
-          {this.state.title} ....... {this.state.description}
+          {this.state.title} ....... {this.state.description}.....{this.state.startDate}
           </div>
 
         </Form>

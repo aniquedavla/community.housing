@@ -9,7 +9,7 @@ import {
 
 export default function MaterialUIPickers() {
   // The first commit of Material-UI
-  const [selectedDate, setSelectedDate] = React.useState(new Date('04/10/2020'));
+  const [selectedDate, setSelectedDate] = React.useState(new Date());
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -20,6 +20,7 @@ export default function MaterialUIPickers() {
      
         <KeyboardDatePicker
           disableToolbar
+          disablePast={true}
           variant="dialogue"
           inputVariant="outlined"
           format="MM/dd/yyyy"
