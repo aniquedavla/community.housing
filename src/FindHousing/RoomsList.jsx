@@ -51,7 +51,7 @@ class RoomsList extends React.Component {
         rooms.push({
           poster: posts[post].posterName,
           description: posts[post].description,
-          mainImage: posts[post].imagesUrls[0],
+          imagesList: posts[post].imagesUrls,
           postCity: posts[post].city,
           rentCost: posts[post].reantCost,
           baths: posts[post].numberOfBaths,
@@ -188,9 +188,8 @@ class RoomsList extends React.Component {
 
         {this.state.roomsList.map((post) => {
           return (
-            <HouseCard name={post.poster} mainimageLink={post.mainImage}
+            <HouseCard name={post.poster} listOfImages={post.imagesList} mainimageLink={post.imagesList[0]}
               postDescription={post.description} cityName={post.postCity} rentCost={post.rentCost} rooms={post.rooms} baths={post.baths} />
-
           )
         }
         )}
