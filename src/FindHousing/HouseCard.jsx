@@ -12,6 +12,7 @@ import BathtubIcon from '@material-ui/icons/Bathtub';
 
 class HouseCard extends React.Component {
 
+  //list of images urls is called listOfImages
   constructor(props)
   {
     super(props);

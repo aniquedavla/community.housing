@@ -47,7 +47,6 @@ class App extends Component {
 
   authListener() {
     Fire.auth().onAuthStateChanged((user) => {
-      console.log(user);
       if (user) {
         this.setState({ user });
         localStorage.setItem('user', user.uid);
@@ -73,8 +72,13 @@ class App extends Component {
             <TopNavBar></TopNavBar>
             <Switch>
               <Route path="/" component={Home} exact />
+<<<<<<< HEAD
               <Route path="/findHouse" render={(props) => <FindHouse learning={this.state.testing} alertMessage={this.state.showMessage}/> }/>
               <Route path="/PostHousing" render={(props) => (<PostHousing {...this.props} changeStatus={this.updateSuccessMessage}/>)}  />
+=======
+              <Route path="/FindHouse" component={FindHouse} exact />
+              <Route path="/PostHousing" component={PostHousing} exact />
+>>>>>>> 20f5443e041251b0b2cde13baa8a47647792ebf1
               <Route path="/Register" component={Register} exact />
               <Route path="/SignIn" component={SignIn} exact />
               <Route path="/UserProfile" component={UserProfile} exact />

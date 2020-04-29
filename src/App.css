@@ -7,6 +7,8 @@
 
 .titleColor {
   color: #3f51b5;
+  font-family: monospace;
+  font-size:  2.5em;
 }
 
 .title{
@@ -190,7 +192,7 @@ border: 1px solid #ffca28;
 }
 
 .userProfile {
-  padding-top: 5rem;
+  padding-top: 5.5rem;
 }
 .GridListTitle .ListSubheader {
   text-align: left;

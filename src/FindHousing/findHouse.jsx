@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, GridList, GridListTile,ListSubheader, Box} from "@material-ui/core";
+import { Grid, GridList, GridListTile, ListSubheader, Box } from "@material-ui/core";
 import ListHouse from './ListHouse';
 import HouseMap from './HouseMap';
 import RoomsList from './RoomsList';
@@ -15,6 +15,7 @@ import Success from '../Components/SuccessMessage'
 //User to allow the user to search for housing in a specfic location for the chosen community
 class FindHouse extends React.Component {
 
+<<<<<<< HEAD
   constructor(props){
     super(props);
     this.state = ({
@@ -23,6 +24,14 @@ class FindHouse extends React.Component {
   }
 
  
+=======
+  constructor(props)
+  {
+    super(props);
+    this.roomsListElement = React.createRef();
+  }
+
+>>>>>>> 20f5443e041251b0b2cde13baa8a47647792ebf1
   render() {
     console.log(this.props.learning)
     const styles = makeStyles(theme => ({
@@ -46,26 +55,40 @@ class FindHouse extends React.Component {
       },
     }));
 
+    const sortHouses = () => {
+      this.roomsListElement.current.sortHomes();
+    }
+
+    const sortRecentRoom = () => {
+      this.roomsListElement.current.sortRecentHomes();
+    }
+
     return (
+
+
       <div>
+<<<<<<< HEAD
       {this.props.alertMessage && <Success message={this.state.successMessage}/>}
       <Grid container className="find-house-grid-container"  styles={styles}>
+=======
+        <Grid container className="find-house-grid-container" styles={styles}>
+>>>>>>> 20f5443e041251b0b2cde13baa8a47647792ebf1
           <Grid item md className="left-panel" styles={styles}>
-            <Box display={{ xs: 'none', sm: 'none', md:"block" }}><HouseMap/></Box>
+            <Box display={{ xs: 'none', sm: 'none', md: "block" }}><HouseMap /></Box>
           </Grid>
-          <Grid container alignItems= "flex-end" justify= 'flex-end'>
+          <Grid container alignItems="flex-end" justify='flex-end'>
             <Grid item md className="right-panel" xs={12} sm={12} md={6} lg={6}>
-                <Grid container className="left-grid-list">
+              <Grid container className="left-grid-list">
                 {/* xs={12} sm={12} md={12} lg={12} */}
-                  <FilterListTab className="filterListTab"></FilterListTab>
-                  <GridList className="housing-list"><RoomsList /></GridList>
-                </Grid>
+                <FilterListTab className="filterListTab" test="hello" sortRecentFun={sortRecentRoom} sortFun={sortHouses}></FilterListTab>
+                <GridList className="housing-list"><RoomsList ref={this.roomsListElement} /></GridList>
+              </Grid>
             </Grid>
           </Grid>
-      </Grid>
+        </Grid>
       </div >
-      );
-    }
+    );
+  }
 }
 
 export default FindHouse;
