@@ -2,10 +2,7 @@ import React from 'react';
 import { Button } from 'reactstrap';
 import Search from './Search';
 import Title from './Title';
-<<<<<<< HEAD
-=======
 import FindHouse from '../FindHousing/FindHouse';
->>>>>>> 20f5443e041251b0b2cde13baa8a47647792ebf1
 import HomeNavBar from './HomeNavBar';
 
 

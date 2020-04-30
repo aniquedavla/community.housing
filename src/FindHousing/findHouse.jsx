@@ -15,23 +15,16 @@ import Success from '../Components/SuccessMessage'
 //User to allow the user to search for housing in a specfic location for the chosen community
 class FindHouse extends React.Component {
 
-<<<<<<< HEAD
-  constructor(props){
+  constructor(props)
+  {
     super(props);
     this.state = ({
       successMessage: "Housing post successful!"
     })
-  }
-
- 
-=======
-  constructor(props)
-  {
-    super(props);
     this.roomsListElement = React.createRef();
+    
   }
 
->>>>>>> 20f5443e041251b0b2cde13baa8a47647792ebf1
   render() {
     console.log(this.props.learning)
     const styles = makeStyles(theme => ({
@@ -67,12 +60,8 @@ class FindHouse extends React.Component {
 
 
       <div>
-<<<<<<< HEAD
-      {this.props.alertMessage && <Success message={this.state.successMessage}/>}
-      <Grid container className="find-house-grid-container"  styles={styles}>
-=======
+        <Success message={this.state.successMessage}></Success>
         <Grid container className="find-house-grid-container" styles={styles}>
->>>>>>> 20f5443e041251b0b2cde13baa8a47647792ebf1
           <Grid item md className="left-panel" styles={styles}>
             <Box display={{ xs: 'none', sm: 'none', md: "block" }}><HouseMap /></Box>
           </Grid>

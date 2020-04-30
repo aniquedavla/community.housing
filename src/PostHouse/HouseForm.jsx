@@ -59,7 +59,10 @@ class HouseForm extends React.Component {
       cityErrorMessage: "",
       showCityError: false,
       startDate: "",
+      iAmTesting: {startDate: null},
       phoneNumber: "",
+      showPhoneNumberError: false,
+      phoneNumberErrorMessage: "",
       showError: "error",
       photoRequiredError: false,
     
@@ -69,7 +72,8 @@ class HouseForm extends React.Component {
     this.createFileUpload = this.createFileUpload.bind(this);
     this.storeHouseImages = this.storeHouseImages.bind(this);
     this.handleChange2 = this.handleChange2.bind(this); 
-    this.onClickTesting = this.onClickTesting.bind(this);
+    this.handleOnClick = this.handleOnClick.bind(this);
+    this.testing = this.testing.bind(this);
   }
 
   handleChange = index => e => {
@@ -99,15 +103,6 @@ class HouseForm extends React.Component {
   }
 
 
-
-  //To post house to firebase
-  //this method gets called after pictures are uploaded to the array
-
-  // if (i === this.fileArray2.length - 1) {
-  
-  // }
-
-
   async postHouse() {
     var user = Fire.auth().currentUser;
     if(user===null){
@@ -116,33 +111,13 @@ class HouseForm extends React.Component {
     else{
       var uid = user.uid;
     }
-    
-    // TO DO : add error checking before posting 
-
 
     if (user != null) {
 
-      // console.log(user.email);
-      // console.log(user.uid);
-      // console.log(document.readyState);
-
       var database = Fire.database();
-
-      // const description = document.getElementById("description").value;
-      // const address = document.getElementById("address").value;
        const numberOfRooms = document.getElementById("numberOfRooms").value;
        const numberOfBaths = document.getElementById("numberOfBaths").value;
-      // const additionalInfo = document.getElementById("additionalInfo").value;
-      // const maximumStay = document.getElementById("maximumStay").value;
-      // const rentCost = document.getElementById("rentCost").value;
-      // const city = document.getElementById("city").value;
-      // const zipcode = document.getElementById("zipcode").value;
-      // const state = document.getElementById("state").value
-
-        var posterName, email;
-
-        this.storeHouseImages();
-
+       var posterName, email;
         var ref = database.ref('users').child(uid).on('value', (snapshot) => {
         // console.log(snapshot.child('firstName').val());
         // console.log(snapshot.child('lastName').val());
@@ -171,29 +146,43 @@ class HouseForm extends React.Component {
         }
 
         storeRef.push(postData)
-        .then((u) => {
-          this.setState({showSuccessMessage: true})
-          console.log("success!")
-          this.props.history.push('/findHouse')
-        })
-        .catch((err) => {
-          console.log("Error: " + err.toString());
-        })
+        
         //var postKey = storeRef.push().key;
         //console.log(storeRef.push().key)
         //this.storeHouseImages(postKey);
       });
 
     }
-   
+  }
 
+  handleChange = index => e => {
+    console.log(index);
+    // this.setState({
+    //   file: URL.createObjectURL(e.target.files[0])
 
+    // })
+    this.fileArray[index] = URL.createObjectURL(e.target.files[0]);
+    this.fileArray2[index] = e.target.files[0];
+
+    this.setState({
+      file: this.fileArray
+    })
+    // this.fileObj.push(e.target.files)
+    //     for (let i = 0; i < this.fileObj[0].length; i++) {
+    //         this.fileArray.push(URL.createObjectURL(this.fileObj[0][i]))
+    //     }
+    //     this.setState({ file: this.fileArray })
   }
 
   handleChange2(event){
     this.setState({
       [event.target.name]: event.target.value,
-      startDate: event.date.formate()
+    })
+  }
+
+  testing(e){
+    this.setState({
+      iAmTesting: {startDate: e.target.value}
     })
   }
 
@@ -281,23 +270,27 @@ class HouseForm extends React.Component {
         showCityError: true
       })
     }
+    if(this.state.phoneNumber<1){
+      isError = true
+      this.setState({
+        phoneNumberErrorMessage: "Required",
+        showPhoneNumberError: true
+      })
+    }
     return isError;
   }
 
-  onClickTesting(e){
+  handleOnClick(e){
     e.preventDefault()
+    console.log(this.state.file)
     let error = this.validate()
-    if(error === true){
-      this.setState({
-        showFailureMessage: true
-      })
+    if(error === true){ 
     console.log("LOOK AT ME")
-    this.props.changeStatus(true)
-    console.log(this.state.titleErrorMessage, this.state.showTitleError)
     }
     else{
       console.log("aldsfjakl;jfl;akjfl;sd")
-      this.postHouse()
+      this.props.changeStatus(true)
+      this.storeHouseImages();
     }
   }
 
@@ -316,6 +309,17 @@ class HouseForm extends React.Component {
         var imageUrl = snapshot.ref.getDownloadURL().then(function (downloadUrl) {
             //console.log(downloadUrl);
             imageUrls.push(downloadUrl);
+            if (i === this.fileArray2.length - 1) {
+              this.postHouse()
+              .then((u) => {
+                this.setState({showSuccessMessage: true})
+                console.log("success!")
+                this.props.history.push('/findHouse')
+              })
+              .catch((err) => {
+                console.log("Error: " + err.toString());
+              })
+            }
           }.bind(this))
         }.bind(this));
       }
@@ -327,41 +331,15 @@ class HouseForm extends React.Component {
     });
 
     return;
-
-
-    // uploadTask.on('state_changed', function(snapshot) {
-
-    // }, function(error){
-
-    // }, function(snapshot){
-    //   var imgUrl = snapshot.ref.getDownloadURL().downloadURL;
-    //   console.log(imgUrl);
-    //   // var updates = {};
-    //   // var housePost = {
-
-    //   //   image1Url: imgUrl,
-    //   //   user: user.uid
-    //   // }
-    //   // updates['/HousePostsImages' + postKey] = housePost;
-    //   // Fire.database().ref().update(updates);
-    // });
-
   }
 
-
-  render() {
-    //console.log(this.state.showError)
-    
+  render() {   
     let uploadDivs = [];
     for (let i = 0; i < this.state.uploadDivsCount; i++) {
       uploadDivs.push(<Input type="file" id="houseImage3" onChange={this.handleChange(i+3)} style={{marginBottom:"5px"}} />);
       uploadDivs.push(<img alt=" " width="100" height="100" src={this.state.file[i+3]} />);
-
-
     }
-
-    console.log(this.state.file.length, "dlkjsflkjafk")
-
+    console.log(this.state.startDate);
     return (
 
       <div className="HouseFormStyle">
@@ -498,7 +476,11 @@ class HouseForm extends React.Component {
 
           <div style={{marginBottom:'10px'}}>
             <Label style={{display: "block", marginBottom:'-10px'}}>Start date*</Label>
-            <MaterialUIPickers name="startDate" onChange={this.handleChange2}></MaterialUIPickers>
+            <MaterialUIPickers 
+            name="startDate" 
+            onChange={this.testing}
+            >
+            </MaterialUIPickers>
           </div>
 
           <Row style={{marginBottom:'10px'}}>
@@ -526,13 +508,18 @@ class HouseForm extends React.Component {
           </Col>
           </Row>  
 
-          <div style={{marginBottom: "10px"}}>
-            <Label style={{marginBottom: "0px"}}>Phone number</Label>
-            <FormattedInputs 
-              name="phoneNumber" 
-              onChange={this.handleChange2}
-              style={{float: "left"}}
-
+          <div style={{marginBottom: "10px" }}>
+            <Label style={{marginBottom: "0px", display: "block"}}>Phone number*</Label>
+            <TextField 
+              margin="dense" 
+              height="" 
+              helperText={this.state.phoneNumberErrorMessage} 
+              placeholder="enter..." 
+              variant="outlined" 
+              error={this.state.showPhoneNumberError} 
+              style={{width: "30vh"}}
+              name="phoneNumber"
+              onChange={this.handleChange2} 
             />
           </div>
 
@@ -540,122 +527,30 @@ class HouseForm extends React.Component {
             <Label style={{display: "block", marginBottom:'-10px'}}>Additional information</Label>
             <TextField multiline={true} rows="2" margin="normal" height="" helperText="" placeholder="enter..." variant="outlined" error={false} fullWidth ></TextField>
           </div>
-          
-          <Label>Pictures</Label>
+            <FormGroup>
+            <div style={{display: "flex"}}>
+            <Label>Pictures*</Label>{this.state.photoRequiredError && <span style={{color: "red"}}>&nbsp;Please upload at least 1 photo.</span>}
+            </div>
           <Input style={{marginBottom:"5px"}} type="file" id="houseImage1" onChange={this.handleChange(0)} />
             {this.state.photoRequiredError && <FormHelperText error={true}>&nbsp;Required</FormHelperText>}
-          <img alt=" " width="100" height="100" id="houseImage1" src={this.state.file[0]}/>
-          
-          <div style={{display: "flex", justifyContent: "start"}}>
-          <div style={{display: "flex", flexDirection: "column"}}>
-          {uploadDivs}
-          </div>
-          </div>
-          
+          <img alt=" " width="100" height="100" id="houseImage1" src={this.state.file[0]}/>          
+          {uploadDivs}          
           <div>
-          <IconButton disableFocusRipple={true} size="small" style={{marginBottom: "30px"}}><AddAPhotoIcon style={{color: "grey"}} fontSize="large" onClick={this.createFileUpload}/></IconButton>
+          <IconButton size="small" style={{marginBottom: "30px"}}><AddAPhotoIcon style={{color: "grey"}} fontSize="large" onClick={this.createFileUpload}/></IconButton>
           </div> 
-        
-          {/* <Button onClick={this.postHouse} color="success">Post it !</Button>{' '} */}
-          <div className="centerButton" style={{marginBottom:"100px"}}>
-
+          </FormGroup>
+  
+          <div className="centerButton"> 
           
-          
-          <Button style={{backgroundColor: "#3f51b5"}} onClick={this.storeHouseImages} className="size">Post My Home</Button>{' '}
+          <Button style={{backgroundColor: "#3f51b5"}} onClick={this.handleOnClick} className="size">Post My Home</Button>{' '}
           
           </div>
-          <div>
-          <Button type="submit">Testing</Button> 
-          {this.state.title} ....... {this.state.description}.....{this.state.startDate}
-          </div>
-
+          
         </Form>
       </div>
 
     );
   }
 }
-
-// const HouseForm = (props) => {
-//   return (
-//     <div className="HouseFormStyle ">
-//     <Form>
-//       <FormGroup>
-//         <Label for="exampleEmail">Description</Label>
-//         <Input type="textarea" name="email" id="exampleEmail" placeholder="enter..." />
-//       </FormGroup>
-//       <FormGroup>
-//         <Label for="examplePassword">Address</Label>
-//         <Input  name="password" id="examplePassword" placeholder="enter..." />
-//       </FormGroup>
-//       <FormGroup>
-//         <Label for="exampleSelect">Number of Rooms</Label>
-//         <Input type="select" name="select" id="exampleSelect">
-//           <option>1</option>
-//           <option>2</option>
-//           <option>3</option>
-//           <option>4</option>
-//           <option>5</option>
-//         </Input>
-//       </FormGroup>
-//       <FormGroup>
-//         <Label for="exampleSelectMulti">Number of Bathrooms</Label>
-//         <Input type="select" name="selectMulti" id="exampleSelectMulti">
-//           <option>1</option>
-//           <option>2</option>
-//           <option>3</option>
-//           <option>4</option>
-//           <option>5</option>
-//         </Input>
-//       </FormGroup>
-//       <FormGroup>
-//         <Label for="exampleText">Additional Information</Label>
-//         <Input type="email" name="text" id="exampleText" />
-//       </FormGroup>
-//       <FormGroup>
-//         <Label for="exampleFile">Pictures</Label>
-//         <Input type="file" name="file" id="exampleFile" />
-//         <Input type="file" name="file" id="exampleFile" />
-//         <Input type="file" name="file" id="exampleFile" />
-//         <FormText color="muted">
-//           You need to add at least one image!
-//         </FormText>
-//       </FormGroup>
-//       <FormGroup tag="fieldset">
-//         <legend> Minimum Stay</legend>
-//         <FormGroup check>
-//           <Label check>
-//             <Input type="radio" name="radio1" />{' '}
-//             6 Months
-//           </Label>
-//         </FormGroup>
-//         <FormGroup check>
-//           <Label check>
-//             <Input type="radio" name="radio1" />{' '}
-//             1 year
-//           </Label>
-//         </FormGroup>
-//         <FormGroup check disabled>
-//           <Label check>
-//             <Input type="radio" name="radio1" />{' '}
-//             + 1.5 year
-//           </Label>
-//         </FormGroup>
-//       </FormGroup>
-//       <FormGroup Rent Cost>
-//         <Label  Rent Cost>
-//           Rent Cost
-//         </Label>
-//         <InputGroup>
-//         <InputGroupAddon addonType="prepend">$</InputGroupAddon>
-//         <Input placeholder="Amount" min={0} max={1000} type="number" step="1" />
-//       </InputGroup>
-//       </FormGroup>
-//       <Button color="success">Post it !</Button>{' '}
-//     </Form>
-//   </div>
-//
-//   );
-// }
 
 export default withRouter(HouseForm);
