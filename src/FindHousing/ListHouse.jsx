@@ -22,7 +22,7 @@ class ListHouse extends React.Component {
 
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to='/Register' />
+      return <Redirect to='/PostHousing' />
     }
   }
   render() {

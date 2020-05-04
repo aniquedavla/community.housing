@@ -56,17 +56,21 @@ const styles = theme => (theme => ({
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 class UserProfile extends React.Component {
 
-  userName = "";
-  email = "";
+  // userName = "";
+  // email = "";
 
   constructor(props) {
     super(props);
     if (this.state && !this.state.user) {
       this.state = ({
         user: null,
+        userName : "",
+        email : "",
+        bio:""
       });
     }
     this.authListener = this.authListener.bind(this);
+    this.getUserInfo = this.getUserInfo.bind(this);
 
   }
 
@@ -91,18 +95,19 @@ class UserProfile extends React.Component {
       var uid = this.state.user.uid;
       var database = Fire.database();
 
-      var theName, theEmail;
+      var theName, theEmail, theBio;
 
       var ref = database.ref('users').child(uid).on('value', (snapshot) => {
 
         theName = snapshot.child('firstName').val() + " " + snapshot.child('lastName').val();
         theEmail = snapshot.child('email').val();
+        theBio = snapshot.child('bio').val();
 
-        this.userName = theName;
-        this.email = theEmail;
-
-        document.getElementById("name").innerHTML = theName;
-        document.getElementById("email").innerHTML = "Email: " + theEmail;
+        this.setState ({
+          userName: theName,
+          email: theEmail,
+          bio:theBio
+        })
 
       });
 
@@ -122,14 +127,17 @@ class UserProfile extends React.Component {
         renderComponent =
           <main className="userProfile">
             {/* Hero unit */}
-            <div className={classes.heroContent}>
+            <div className={classes.heroContent} >
               <Container maxWidth="sm" >
                 <Typography id="name" component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-
+                  {this.state.userName}
                 </Typography>
                 <Typography id="email" variant="h5" align="center" color="textSecondary" paragraph>
-
+                  {this.state.email}
                 </Typography>
+                <Typography variant="h5" align="center" color="textSecondary" paragraph>
+                {this.state.bio}
+              </Typography>
                 <Typography variant="h5" align="center" color="textSecondary" paragraph>
                   Welcome in! You may edit or delete any room listing
               </Typography>
@@ -158,7 +166,6 @@ class UserProfile extends React.Component {
           </main>;
       }
     }
-
     return (
 
       <React.Fragment>
@@ -175,7 +182,6 @@ class UserProfile extends React.Component {
         </footer>
         {/* End footer */}
       </React.Fragment>
-
 
     );
   }

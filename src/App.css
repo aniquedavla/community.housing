@@ -3,7 +3,18 @@
   padding: 250px 0;
   height: 100%;
   overflow-y: hidden;
+  
 }
+
+.buttonsMain{
+  height: 100%;
+  padding: 5rem;
+  margin-left: 0.5rem !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 
 .titleColor {
   color: #3f51b5;

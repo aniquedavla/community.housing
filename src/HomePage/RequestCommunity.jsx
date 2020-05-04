@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -10,7 +11,9 @@ import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import TextField from '@material-ui/core/TextField';
+import AddIcon from '@material-ui/icons/Add';
 import Fire from '../FireDbConfig/Fire';
+
 
 
 const styles = (theme) => ({
@@ -53,78 +56,88 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-export default function CustomizedDialogs(props) {
+export default function CustomizedDialogs() {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const closeEdit = () => {
+  const closeDialog = () => {
     setOpen(false);
   };
-
-
   const handleClose = () => {
-    var user = Fire.auth().currentUser;
-    const email = document.getElementById("emailaddress").value;
-    const bio = document.getElementById("bio").value;
+    var database = Fire.database();
+
+    var uid = Fire.auth().currentUser.uid;
+    const name = document.getElementById("name").value;
+    const reason = document.getElementById("reason").value;
+    const email = document.getElementById("email").value;
+    const community = document.getElementById("communityName").value;
+    var ref = database.ref('communitiesRequests');
 
 
-    if(email !== "" && bio !== ""){
+    // ref.push(data);
 
-      user.updateEmail(email).then(function() {
-        // Update successful.
-        }).catch(function(error) {
-      // An error happened.
-        });
-    
-        var database = Fire.database();
-        var uid = Fire.auth().currentUser.uid;
-        var ref = database.ref('users').child(uid);
-    
-        // ref.push(data);
-        ref.update({'email': email});
-        ref.update({'bio': bio});
-    }
+    var postData = {
+        email: email,
+        name: name,
+        reason: reason,
+        communityName: community
+      }
 
-
-   
-    setOpen(false);
-
+      ref.push(postData)
+      setOpen(false);
 
   };
 
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Edit Profile
+        Community
+        <AddIcon color="#3f51b5"/>
       </Button>
-      <Dialog onClose={closeEdit} aria-labelledby="customized-dialog-title" open={open}>
-        <DialogTitle id="customized-dialog-title" onClose={closeEdit}>
-          Your Profile
+      <Dialog onClose={closeDialog} aria-labelledby="customized-dialog-title" open={open}>
+        <DialogTitle id="customized-dialog-title" onClose={closeDialog}>
+          Community Request
         </DialogTitle>
         <DialogContent dividers>
           <TextField
             autoFocus
             margin="dense"
-            id="emailaddress"
-            label="Email Address"
+            id="name"
+            label="Who are you?"
             type="email"
             fullWidth
           />
            <TextField
             autoFocus
             margin="dense"
-            id="bio"
-            label="Bio"
+            id="communityName"
+            label="Community Name"
+            type="email"
+            fullWidth
+          />
+           <TextField
+            autoFocus
+            margin="dense"
+            id="reason"
+            label="Why this community?"
+            type="reason"
+            fullWidth
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="email"
+            label="Email address"
             type="email"
             fullWidth
           />
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose} color="primary">
-            Save changes
+            Submit
           </Button>
         </DialogActions>
       </Dialog>

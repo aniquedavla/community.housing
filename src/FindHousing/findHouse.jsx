@@ -24,9 +24,17 @@ class FindHouse extends React.Component {
     this.roomsListElement = React.createRef();
     
   }
+  
+
+  getSearchFromApp(city)
+  {
+    console.log('hhh' + city);
+      console.log(this.props);
+      this.roomsListElement.current.sortByCity(city);
+  }
 
   render() {
-    console.log(this.props.learning)
+    //console.log(this.props.learning)
     const styles = makeStyles(theme => ({
       Grid: {},
       rightPanel: {
@@ -60,7 +68,7 @@ class FindHouse extends React.Component {
 
 
       <div>
-        <Success message={this.state.successMessage}></Success>
+        {this.props.successMessage && <Success message={this.state.successMessage}/>}
         <Grid container className="find-house-grid-container" styles={styles}>
           <Grid item md className="left-panel" styles={styles}>
             <Box display={{ xs: 'none', sm: 'none', md: "block" }}><HouseMap /></Box>

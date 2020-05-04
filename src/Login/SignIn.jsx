@@ -71,11 +71,11 @@ class SignIn extends React.Component {
 
     Fire.auth().signInWithEmailAndPassword(email, password)
       .then((u) => {
-        console.log("Success login")
+        console.log("Success login");
         
         this.setState({user: u.user});
         const redirectUrl = this.props.location.state.redirectUrl;
-
+        console.log(redirectUrl);
         if (redirectUrl) {
           this.props.history.push(redirectUrl);
 

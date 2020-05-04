@@ -101,6 +101,10 @@ export default function HomeNavBar() {
     return <Redirect to='/UserProfile' />;
   };
 
+  const goToHome = event => {
+    return <Redirect to='/' />;
+  };
+
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
@@ -141,22 +145,23 @@ export default function HomeNavBar() {
           <img
             className={classes.logo}
             src={logo}
+            onClick={goToHome}
             alt="Comm Logo"
           />
           <IconButton
             edge="start"
             className={classes.menuButton}
+            onClick={goToHome}
             color="inherit"
             aria-label="open drawer"
+            
           >
             {/* <MenuIcon /> */}
           </IconButton>
           
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="" color="inherit">
-              <ListHouse></ListHouse>
-            </IconButton>
+            
             <IconButton
               edge="end"
               aria-label="account of current user"

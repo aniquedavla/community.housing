@@ -58,8 +58,8 @@ class RoomsList extends React.Component {
           rooms: posts[post].numberOfRooms
         });
 
-        console.log(posts[post].posterName)
-        console.log(posts[post].imagesUrls[0])
+        // console.log(posts[post].posterName)
+        // console.log(posts[post].imagesUrls[0])
       }
 
       rooms.reverse();
@@ -72,6 +72,23 @@ class RoomsList extends React.Component {
     });
 
 
+  }
+
+  sortByCity(city){
+    let list = [];
+    list = this.state.roomsList;
+    let result = [];
+
+    for(let post in list){
+      if(list[post].postCity === city)
+      {
+        result.push(list[post]);
+      }
+    }
+
+    this.setState({
+      roomsList: result
+    });
   }
 
    compare(a, b) {
@@ -104,6 +121,8 @@ class RoomsList extends React.Component {
 
     return comparison * -1;
   }
+
+  
   sortHomes() {
     if(this.state.sortOrder) {
       if (this.state.sortOrder === 'asc') 

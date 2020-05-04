@@ -7,6 +7,8 @@ import '../App.css'
 import CustomizedSnackbars from '../Components/Alerts'
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
+import SignIn from '../Login/SignIn';
+
 
 
 
@@ -15,11 +17,36 @@ class PostHousing extends React.Component {
   constructor(props) {
         super(props);
         this.logout = this.logout.bind(this);
+        if (this.state && !this.state.user) {
+          this.state = ({
+            user: null,
+          });
+        }
+        this.authListener = this.authListener.bind(this);
+    }
+
+    componentDidMount() {
+      this.authListener();
+    }
+  
+    authListener() {
+      Fire.auth().onAuthStateChanged((user) => {
+        if (user) {
+          this.setState({ user });
+        } else {
+          this.setState({ user: null });
+        }
+      });
     }
 
 
     logout() {
         Fire.auth().signOut();
+    }
+
+    checkUser()
+    {
+      return <Redirect to={{ pathname: '/SignIn', state: { redirectUrl: '/PostHousing' } }} />;
     }
 
     state = {
@@ -42,17 +69,24 @@ class PostHousing extends React.Component {
 
   render() {
 
-    return (
+    let renderComponent;
+    if (this.state) {
+      let userin = this.state ? this.state.user : null;
 
-      <div className="postHousePageContainer">
-      
-        
+      if (!userin) {
+        renderComponent = <SignIn/>
+      } else {
+        renderComponent =
+        <div className="postHousePageContainer">
       <h1 className="postHousePageTitle"> Post Your House </h1>
       <HouseForm changeStatus={this.props.changeStatus}/>
-     
-      {this.renderRedirect()}
       </div>
-
+    }
+  }
+    return (
+      <div className="postHousePageContainer">
+      {renderComponent}
+      </div>
 
     );
   }

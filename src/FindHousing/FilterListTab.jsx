@@ -39,7 +39,6 @@ export default function FilterListTab(props) {
 
   const sortByPrice = () =>
   {
-    
     props.sortFun();
   }
 

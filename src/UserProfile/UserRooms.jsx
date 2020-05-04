@@ -83,7 +83,7 @@ class UserRooms extends React.Component {
 
           {this.state.roomsList.map((post) => {
             return (
-                <HouseCard name={post.poster} mainimageLink={post.mainImage}
+                <HouseCard  mainimageLink={post.mainImage}
               postDescription={post.description} cityName={post.postCity} rentCost={post.rentCost} rooms={post.rooms} baths={post.baths} />
               
             )}

@@ -87,7 +87,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -111,6 +111,21 @@ export default function PrimarySearchAppBar() {
   const handleMobileMenuOpen = event => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+
+  const keyPress = e => {
+    if(e.keyCode == 13){
+       console.log('value', e.target.value);
+       // put the login here
+       filterByCity(e.target.value);
+    }
+  }
+
+  const filterByCity = (city) =>
+  {
+    //props.filterCity(city);
+    props.passSearchToApp(city);
+  }
+
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -157,6 +172,7 @@ export default function PrimarySearchAppBar() {
             </div>
             <InputBase
               placeholder="Search…"
+              onKeyDown={keyPress}
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,

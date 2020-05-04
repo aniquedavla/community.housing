@@ -129,12 +129,12 @@ class HouseForm extends React.Component {
 
 
         var postData = {
-          //email: email,
-          //posterName: posterName,
-          //posterId: uid,
+          email: email,
+          posterName: posterName,
+          posterId: uid,
           title: this.state.title,
           description: this.state.description,
-          rentCost: this.state.rent,
+          reantCost: this.state.rent,
           minimumStay: this.state.minStay,
           address: this.state.address,
           zipCode: this.state.zipCode,
@@ -289,7 +289,7 @@ class HouseForm extends React.Component {
     }
     else{
       console.log("aldsfjakl;jfl;akjfl;sd")
-      this.props.changeStatus(true)
+      //this.props.changeStatus(true);
       this.storeHouseImages();
     }
   }
@@ -314,7 +314,7 @@ class HouseForm extends React.Component {
               .then((u) => {
                 this.setState({showSuccessMessage: true})
                 console.log("success!")
-                this.props.history.push('/findHouse')
+                this.props.history.push('/FindHouse')
               })
               .catch((err) => {
                 console.log("Error: " + err.toString());
