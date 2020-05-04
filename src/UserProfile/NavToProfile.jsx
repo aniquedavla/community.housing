@@ -10,7 +10,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 
 
 // React button component that directs the user to houseForm to post a house/ Room
-class ListHouse extends React.Component {
+class NavToProfile extends React.Component {
 
   state = {
     redirect : false
@@ -38,4 +38,4 @@ class ListHouse extends React.Component {
   }
 }
 
-export default ListHouse;
+export default NavToProfile;

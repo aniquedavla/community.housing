@@ -6,7 +6,7 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
-  Button
+  Button,
 } from "reactstrap";
 import RoomIcon from "@material-ui/icons/Room";
 import PersonIcon from "@material-ui/icons/Person";
@@ -16,11 +16,12 @@ import BathtubIcon from "@material-ui/icons/Bathtub";
 import DetailedModal from "./DetailedModal";
 
 class HouseCard extends React.Component {
+  //list of images urls is called listOfImages
   constructor(props) {
     super(props);
 
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
     };
   }
 

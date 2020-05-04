@@ -60,6 +60,7 @@ class Register extends React.Component {
       .then((u) => {
         console.log("Success signUp");
         this.registerUserInfo();
+        this.props.history.push('/UserProfile');
       })
       .catch((err) => {
         console.log("Error: " + err.toString());
@@ -92,6 +93,7 @@ class Register extends React.Component {
 
     ref.set({
       UserId: uid,
+      bio:'Bio:.......',
       email: email,
       firstName: firstName,
       lastName: lastName

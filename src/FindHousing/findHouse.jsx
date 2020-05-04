@@ -14,11 +14,27 @@ import PopUpMenu from "./PopUpMenu";
 import "../App.css";
 import FilterListTab from "./FilterListTab";
 import { makeStyles } from "@material-ui/core/styles";
+import Success from "../Components/SuccessMessage";
 
 //Find housing page has two sides, map and list of rooms
 //User to allow the user to search for housing in a specfic location for the chosen community
-class findHouse extends React.Component {
+class FindHouse extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      successMessage: "Housing post successful!",
+    };
+    this.roomsListElement = React.createRef();
+  }
+
+  getSearchFromApp(city) {
+    console.log("hhh" + city);
+    console.log(this.props);
+    this.roomsListElement.current.sortByCity(city);
+  }
+
   render() {
+    //console.log(this.props.learning)
     const styles = makeStyles((theme) => ({
       Grid: {},
       rightPanel: {
@@ -40,8 +56,19 @@ class findHouse extends React.Component {
       },
     }));
 
+    const sortHouses = () => {
+      this.roomsListElement.current.sortHomes();
+    };
+
+    const sortRecentRoom = () => {
+      this.roomsListElement.current.sortRecentHomes();
+    };
+
     return (
       <div>
+        {this.props.successMessage && (
+          <Success message={this.state.successMessage} />
+        )}
         <Grid container className="find-house-grid-container" styles={styles}>
           <Grid item md className="left-panel" styles={styles}>
             <Box display={{ xs: "none", sm: "none", md: "block" }}>
@@ -52,9 +79,14 @@ class findHouse extends React.Component {
             <Grid item md className="right-panel" xs={12} sm={12} md={6} lg={6}>
               <Grid container className="left-grid-list">
                 {/* xs={12} sm={12} md={12} lg={12} */}
-                <FilterListTab className="filterListTab"></FilterListTab>
+                <FilterListTab
+                  className="filterListTab"
+                  test="hello"
+                  sortRecentFun={sortRecentRoom}
+                  sortFun={sortHouses}
+                ></FilterListTab>
                 <GridList className="housing-list">
-                  <RoomsList />
+                  <RoomsList ref={this.roomsListElement} />
                 </GridList>
               </Grid>
             </Grid>
@@ -65,4 +97,4 @@ class findHouse extends React.Component {
   }
 }
 
-export default findHouse;
+export default FindHouse;

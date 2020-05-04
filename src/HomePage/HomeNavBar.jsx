@@ -101,6 +101,10 @@ export default function HomeNavBar() {
     return <Redirect to='/UserProfile' />;
   };
 
+  const goToHome = event => {
+    return <Redirect to='/' />;
+  };
+
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
@@ -131,45 +135,7 @@ export default function HomeNavBar() {
   );
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton aria-label="" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <ListHouse />
-          </Badge>
-        </IconButton>
-        <p>Add a community</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
+  
   // style={{marginTop: 10}}
   const logoImg = <img src="../images/logo.png"/>
   return (
@@ -179,27 +145,23 @@ export default function HomeNavBar() {
           <img
             className={classes.logo}
             src={logo}
+            onClick={goToHome}
             alt="Comm Logo"
           />
           <IconButton
             edge="start"
             className={classes.menuButton}
+            onClick={goToHome}
             color="inherit"
             aria-label="open drawer"
+            
           >
             {/* <MenuIcon /> */}
           </IconButton>
           
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="" color="inherit">
-              <ListHouse></ListHouse>
-            </IconButton>
-            <IconButton aria-label="show 7 new notifications" color="inherit">
-              <Badge badgeContent={7} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            
             <IconButton
               edge="end"
               aria-label="account of current user"
@@ -208,7 +170,7 @@ export default function HomeNavBar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+              <NavToProfile />
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>
@@ -224,8 +186,6 @@ export default function HomeNavBar() {
           </div>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
     </div>
   );
 }
