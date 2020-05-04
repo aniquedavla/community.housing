@@ -9,11 +9,11 @@
   color: #3f51b5;
 }
 
-.title{
+.title {
   color: #3f51b5;
 }
-html, body
-{
+html,
+body {
   height: 100%;
 }
 
@@ -22,7 +22,7 @@ html, body
 }
 
 .PageErorMsg {
-    color: #B80000;
+  color: #b80000;
 }
 
 .HouseFormStyle {
@@ -32,7 +32,7 @@ html, body
   padding-left: 50px;
 }
 
-.postHousePageTitle{
+.postHousePageTitle {
   text-align: center;
   color: #fca620;
 }
@@ -49,18 +49,17 @@ html, body
   overflow: hidden;
 }
 .LocationSearch input {
-border: 1px solid #3f51b5;
-border-top-right-radius: 0.25rem;
-border-bottom-right-radius: 0.25rem;
-
+  border: 1px solid #3f51b5;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
 }
 
 .input-group.md-form.form-sm.form-2 input.amber-border {
-border: 1px solid #ffca28;
+  border: 1px solid #ffca28;
 }
 
 .HouseCard {
-  padding: .5em !important;
+  padding: 0.5em !important;
   max-width: 17rem !important;
   max-height: 25.5rem !important;
   min-width: 17rem !important;
@@ -68,6 +67,39 @@ border: 1px solid #ffca28;
   /* width: 70%; */
   flex-grow: 1;
   align-self: flex-start;
+}
+
+.HouseCard:hover {
+  opacity: 80%;
+}
+
+.CarousalContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ImageCarousal {
+  width: 50%;
+}
+
+@media (max-width: 1000px) {
+  .ImageCarousal {
+    width: 80%;
+  }
+  .DetailedModalGridWrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 2em;
+  }
+}
+
+@media (min-width: 1000px) {
+  .DetailedModalGridWrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 2em;
+  }
 }
 
 /* styling sign up page */
@@ -82,31 +114,29 @@ border: 1px solid #ffca28;
 #FindHouse {
   padding-top: 4em;
 }
-#listings{
+#listings {
   padding-top: 4em;
 }
 
 /* left panel contains the map */
-.left-panel{
+.left-panel {
   width: 50%;
   height: 100%;
   position: fixed;
   padding-top: 5rem !important;
-
 }
 
 /* right panel contain the post and filter tap */
-.right-panel{
+.right-panel {
   padding-top: 5rem;
   display: flex;
   width: 100%;
   height: 100%;
-  
 }
-.find-house-grid-container{
+.find-house-grid-container {
   height: 100%;
 }
-.left-grid-list{
+.left-grid-list {
   width: 50%;
   height: 100%;
 }
@@ -115,7 +145,7 @@ border: 1px solid #ffca28;
   overflow-y: scroll;
   position: relative;
   /* margin: 5rem !important; */
-    /* mix-blend-mode: overlay; */
+  /* mix-blend-mode: overlay; */
   z-index: 5;
   overflow: auto;
 }
@@ -141,13 +171,12 @@ border: 1px solid #ffca28;
   padding: 5px;
 
 } */
-.roomsList{
+.roomsList {
   display: flex;
   flex-direction: row;
   align-content: flex-start;
-  flex-wrap:  wrap ;
+  flex-wrap: wrap;
   padding-left: 0.5rem !important;
-
 }
 
 .userProfile {

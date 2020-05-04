@@ -1,21 +1,25 @@
-import React from 'react';
-import { Grid, GridList, GridListTile,ListSubheader, Box} from "@material-ui/core";
-import ListHouse from './ListHouse';
-import HouseMap from './HouseMap';
-import RoomsList from './RoomsList';
-import LocationSearchBar from './LocationSearchBar';
-import PopUpMenu from './PopUpMenu';
-import '../App.css';
-import FilterListTab from './FilterListTab';
-import { makeStyles } from '@material-ui/core/styles';
-
+import React from "react";
+import {
+  Grid,
+  GridList,
+  GridListTile,
+  ListSubheader,
+  Box,
+} from "@material-ui/core";
+import ListHouse from "./ListHouse";
+import HouseMap from "./HouseMap";
+import RoomsList from "./RoomsList";
+import LocationSearchBar from "./LocationSearchBar";
+import PopUpMenu from "./PopUpMenu";
+import "../App.css";
+import FilterListTab from "./FilterListTab";
+import { makeStyles } from "@material-ui/core/styles";
 
 //Find housing page has two sides, map and list of rooms
 //User to allow the user to search for housing in a specfic location for the chosen community
 class findHouse extends React.Component {
-  
   render() {
-    const styles = makeStyles(theme => ({
+    const styles = makeStyles((theme) => ({
       Grid: {},
       rightPanel: {
         // padding: '5rem',
@@ -38,23 +42,27 @@ class findHouse extends React.Component {
 
     return (
       <div>
-      <Grid container className="find-house-grid-container"  styles={styles}>
+        <Grid container className="find-house-grid-container" styles={styles}>
           <Grid item md className="left-panel" styles={styles}>
-            <Box display={{ xs: 'none', sm: 'none', md:"block" }}><HouseMap/></Box>
+            <Box display={{ xs: "none", sm: "none", md: "block" }}>
+              <HouseMap />
+            </Box>
           </Grid>
-          <Grid container alignItems= "flex-end" justify= 'flex-end'>
+          <Grid container alignItems="flex-end" justify="flex-end">
             <Grid item md className="right-panel" xs={12} sm={12} md={6} lg={6}>
-                <Grid container className="left-grid-list">
+              <Grid container className="left-grid-list">
                 {/* xs={12} sm={12} md={12} lg={12} */}
-                  <FilterListTab className="filterListTab"></FilterListTab>
-                  <GridList className="housing-list"><RoomsList /></GridList>
-                </Grid>
+                <FilterListTab className="filterListTab"></FilterListTab>
+                <GridList className="housing-list">
+                  <RoomsList />
+                </GridList>
+              </Grid>
             </Grid>
           </Grid>
-      </Grid>
-      </div >
-      );
-    }
+        </Grid>
+      </div>
+    );
+  }
 }
 
 export default findHouse;
