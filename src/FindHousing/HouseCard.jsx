@@ -55,7 +55,7 @@ class HouseCard extends React.Component {
               <RoomIcon color="secondary" /> {this.props.cityName}
             </CardTitle>
             <CardSubtitle>{this.props.community}</CardSubtitle>
-            <CardText> {this.props.postDescription}</CardText>
+            <CardText> {this.props.title}</CardText>
             <CardTitle>
               {" "}
               {this.props.rooms} <HotelIcon color="primary" fontSize="small" />{" "}

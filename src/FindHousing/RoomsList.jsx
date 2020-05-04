@@ -49,10 +49,11 @@ class RoomsList extends React.Component {
         //   user: items[item].user
         // });
         rooms.push({
+          title: posts[post].title,
           poster: posts[post].posterName,
           email: posts[post].email,
           description: posts[post].description,
-          mainImage: posts[post].imagesUrls,
+          imagesList: posts[post].imagesUrls,
           postCity: posts[post].city,
           rentCost: posts[post].reantCost,
           baths: posts[post].numberOfBaths,
@@ -190,6 +191,7 @@ class RoomsList extends React.Component {
         {this.state.roomsList.map((post) => {
           return (
             <HouseCard
+              title={post.title}
               name={post.poster}
               email={post.email}
               mainimageLink={post.imagesList[0]}

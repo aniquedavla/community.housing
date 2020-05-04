@@ -80,9 +80,14 @@ export default function SimpleModal(props) {
             <hr></hr>
             <div className="CarousalContainer">
               <Carousel className="ImageCarousal" autoPlay>
-                <div>
-                  <img src={props.mainimageLink} />
-                </div>
+                {props.listOfImages.map((image) => {
+                  return (
+                    <div>
+                      <img src={image} />
+                    </div>
+                  );
+                })}
+                {/* <img src={props.mainimageLink} /> */}
               </Carousel>
             </div>
             <div className="DetailedModalGridWrapper">
@@ -105,21 +110,16 @@ export default function SimpleModal(props) {
                 </h5>
                 <h5>
                   <EventIcon color="grey" fontSize="medium" />
-                  {"  "}Minimum Stay: {props.minimumStay}
+                  {"  "}Minimum Stay: {props.minimumStay} months
                 </h5>
-                <h5>
+                {/* <h5>
                   <AccessTimeIcon color="grey" fontSize="medium" />
                   {"  "}Date Posted: X
-                </h5>
+                </h5> */}
               </div>
               <div>
-                <h3>{props.postDescription}</h3>
-                <p style={{ fontSize: "20px" }}>
-                  Private room approx 110 sq feet, mirrored closet, new laminate
-                  wood floor. Queen bed available if needed. $750/mo plus $350
-                  security deposit. Single professional working or student
-                  female only. Shared bathroom, kitchen, laundry room.
-                </p>
+                <h3>{props.title}</h3>
+                <p style={{ fontSize: "20px" }}>{props.postDescription}</p>
               </div>
             </div>
             <br></br>
