@@ -110,7 +110,7 @@ export default function SimpleModal(props) {
                 </h5>
                 <h5>
                   <EventIcon color="grey" fontSize="medium" />
-                  {"  "}Minimum Stay: {props.minimumStay} months
+                  {"  "}Minimum Stay: {props.minimumStay}
                 </h5>
                 {/* <h5>
                   <AccessTimeIcon color="grey" fontSize="medium" />
