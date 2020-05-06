@@ -1,6 +1,7 @@
 import React from "react";
-import HouseCard from "../FindHousing/HouseCard";
+import UserPost from "./UserPost";
 import Fire from "../FireDbConfig/Fire";
+
 
 class UserRooms extends React.Component {
   constructor(props) {
@@ -40,11 +41,17 @@ class UserRooms extends React.Component {
 
       var ref = database.ref("housePosts");
 
+
       ref.on("value", (snapshot) => {
         let posts = snapshot.val();
+        console.log(posts);
+
         for (let post in posts) {
           var id = posts[post].posterId;
           if (id === uid) {
+            console.log("id"+ post)
+
+
             rooms.push({
               title: posts[post].title,
               poster: posts[post].posterName,
@@ -56,6 +63,8 @@ class UserRooms extends React.Component {
               baths: posts[post].numberOfBaths,
               rooms: posts[post].numberOfRooms,
               minimumStay: posts[post].minimumStay,
+              postId:post
+
             });
           }
         }
@@ -75,7 +84,7 @@ class UserRooms extends React.Component {
 
         {this.state.roomsList.map((post) => {
           return (
-            <HouseCard
+            <UserPost
               title={post.title}
               name={post.poster}
               email={post.email}
@@ -87,6 +96,7 @@ class UserRooms extends React.Component {
               rooms={post.rooms}
               baths={post.baths}
               minimumStay={post.minimumStay}
+              postId={post.postId}
             />
           );
         })}

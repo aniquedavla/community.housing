@@ -152,6 +152,8 @@ class HouseForm extends React.Component {
         //this.storeHouseImages(postKey);
       });
 
+      window.location.href = '/FindHouse';
+
     }
   }
 

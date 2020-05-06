@@ -55,6 +55,7 @@
     ]
   },
   "devDependencies": {
+    "style-loader": "^1.2.1",
     "xxxxx": "^1.0.3"
   }
 }

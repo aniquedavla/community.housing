@@ -17,10 +17,6 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import logo from './logo.png'
 import ListHouse from '../FindHousing/ListHouse';
 import NavToProfile from '../UserProfile/NavToProfile';
-import { Redirect } from 'react-router-dom';
-import NavToHome from '../UserProfile/NavToHome';
-
-
 
 
 const useStyles = makeStyles(theme => ({
@@ -86,12 +82,12 @@ const useStyles = makeStyles(theme => ({
     },
   },
   logo: {
-    width: 78,
-    height: 43.54
+    width: 70.54,
+    height: 45.54
   }
 }));
 
-export default function HomeNavBar(props) {
+export default function PrimarySearchAppBar(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -100,13 +96,8 @@ export default function HomeNavBar(props) {
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleProfileMenuOpen = event => {
-    return <Redirect to='/UserProfile' />;
+    setAnchorEl(event.currentTarget);
   };
-
-  // const goToHome = event => {
-  //   props.history.push('/');
-
-  // };
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
@@ -121,6 +112,21 @@ export default function HomeNavBar(props) {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const keyPress = e => {
+    if(e.keyCode == 13){
+       console.log('value', e.target.value);
+       // put the login here
+       filterByCity(e.target.value);
+    }
+  }
+
+  const filterByCity = (city) =>
+  {
+    //props.filterCity(city);
+    props.passSearchToApp(city);
+  }
+
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -133,7 +139,6 @@ export default function HomeNavBar(props) {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
 
@@ -145,23 +150,27 @@ export default function HomeNavBar(props) {
     <div className={classes.grow}>
       <AppBar position="fixed" style={{backgroundColor:"#5c6bc0"}}>
         <Toolbar>
-          
+          <img
+            className={classes.logo}
+            src={logo}
+            alt="Comm Logo"
+          />
           <IconButton
             edge="start"
             className={classes.menuButton}
-            // onClick={goToHome}
             color="inherit"
             aria-label="open drawer"
-            
           >
-           <NavToHome/>
-
             {/* <MenuIcon /> */}
           </IconButton>
-          
+          <Typography className={classes.title} variant="h6" noWrap>
+            SJSU Housing
+          </Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            
+            <IconButton aria-label="" color="inherit">
+              <ListHouse></ListHouse>
+            </IconButton>
             <IconButton
               edge="end"
               aria-label="account of current user"
@@ -186,6 +195,7 @@ export default function HomeNavBar(props) {
           </div>
         </Toolbar>
       </AppBar>
+      
     </div>
   );
 }

@@ -13,6 +13,12 @@ import BathtubIcon from "@material-ui/icons/Bathtub";
 import HotelIcon from "@material-ui/icons/Hotel";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import EventIcon from "@material-ui/icons/Event";
+import DeleteIcon from '@material-ui/icons/Delete';
+import Box from '@material-ui/core/Box';
+import Fire from '../FireDbConfig/Fire';
+import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+
 
 function getModalStyle() {
   return {
@@ -22,6 +28,9 @@ function getModalStyle() {
     botton: "10%",
   };
 }
+
+
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -41,15 +50,35 @@ export default function SimpleModal(props) {
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
-  // const [open, setOpen] = React.useState(false);
 
-  // const handleOpen = () => {
-  //   setOpen(true);
-  // };
+
+   
 
   // const handleClose = () => {
   //   setOpen(false);
   // };
+
+  
+
+
+
+  const deletePost = () => {
+
+    console.log(props.postId);
+    var database = Fire.database();
+    var ref = database.ref('housePosts').child(props.postId);
+    
+    ref.remove();     
+   
+
+    
+    props.handleClick();
+    window.location.href = '/UserProfile';
+
+
+    
+
+  };
 
   return (
     <div>
@@ -126,7 +155,7 @@ export default function SimpleModal(props) {
             </div>
             <br></br>
             <hr></hr>
-            <div style={{ textAlign: "right" }}>
+            {/* <div style={{ textAlign: "right" }}>
               <h5
                 style={{
                   color: "grey",
@@ -136,14 +165,12 @@ export default function SimpleModal(props) {
                 {props.name}
               </h5>
               <h3>{props.email}</h3>
-            </div>
-            {/* <Button
-              variant="contained"
-              color="primary"
-              style={{ float: "right", fontSize: "20px" }}
-            >
-              Contact
-            </Button> */}
+            </div> */}
+            <Box paddingLeft={19}>
+            <Button style={{backgroundColor: "#dd2c00" , color: "#fafafa"}} size={'large'} onClick={deletePost} className="size">Delete Post <DeleteIcon/> </Button>{' '}
+
+            </Box>
+
           </div>
         </Fade>
       </Modal>

@@ -181,7 +181,7 @@ drawMap(){
     for (let c in citiesAndCount) {
       var circle = L.circle([citiesAndCount[c].x, citiesAndCount[c].y], {
         color: 'black',
-        fillColor: 'gray',
+        fillColor: 'red',
         fillOpacity: 0.5,
         radius: 2700
       }).addTo(this.theMap);

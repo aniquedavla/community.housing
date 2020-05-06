@@ -16,6 +16,9 @@ import SignIn from '../Login/SignIn';
 import { Redirect } from 'react-router-dom';
 import LogOut from './LogOut';
 import ProfileEditDialog from './ProfileEditDialog';
+import HomeNavBar from '../HomePage/HomeNavBar';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
 
 
 
@@ -128,7 +131,9 @@ class UserProfile extends React.Component {
           <main className="userProfile">
             {/* Hero unit */}
             <div className={classes.heroContent} >
+              <HomeNavBar/>
               <Container maxWidth="sm" >
+
                 <Typography id="name" component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
                   {this.state.userName}
                 </Typography>

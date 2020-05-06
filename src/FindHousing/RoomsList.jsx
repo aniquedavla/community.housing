@@ -59,6 +59,7 @@ class RoomsList extends React.Component {
           baths: posts[post].numberOfBaths,
           rooms: posts[post].numberOfRooms,
           minimumStay: posts[post].minimumStay,
+          additionalInfo:posts[post].additionalInfo
         });
       }
 
@@ -202,6 +203,7 @@ class RoomsList extends React.Component {
               rooms={post.rooms}
               baths={post.baths}
               minimumStay={post.minimumStay}
+              additionalInfo={post.additionalInfo}
             />
           );
         })}

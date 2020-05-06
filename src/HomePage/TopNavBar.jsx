@@ -17,6 +17,9 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import logo from './logo.png'
 import ListHouse from '../FindHousing/ListHouse';
 import NavToProfile from '../UserProfile/NavToProfile';
+import NavToHome from '../UserProfile/NavToHome';
+import NavToCommunity from '../UserProfile/NavToHome';
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -126,6 +129,12 @@ export default function PrimarySearchAppBar(props) {
     props.passSearchToApp(city);
   }
 
+  // const goToHome = event => {
+  //   props.history.push('/');
+
+  // };
+  
+
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -150,21 +159,20 @@ export default function PrimarySearchAppBar(props) {
     <div className={classes.grow}>
       <AppBar position="fixed" style={{backgroundColor:"#5c6bc0"}}>
         <Toolbar>
-          <img
-            className={classes.logo}
-            src={logo}
-            alt="Comm Logo"
-          />
+          
           <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
+            // onClick={goToHome}
+
           >
             {/* <MenuIcon /> */}
+            <NavToHome/>
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            SJSU Engineers
+          SJSU Housing
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>

@@ -3,6 +3,9 @@
   padding: 250px 0;
   height: 100%;
   overflow-y: hidden;
+  padding-top: 16rem;
+
+  
   
 }
 
@@ -87,6 +90,9 @@ body {
   margin: auto;
   max-width: 80vh;
   height: 100vh;
+  padding-top: 0.5rem;
+
+
 }
 
 .Map {
@@ -187,6 +193,7 @@ body {
 }
 .find-house-grid-container {
   height: 100%;
+  padding-top: 0.5rem;
 }
 .left-grid-list {
   width: 50%;
@@ -232,7 +239,7 @@ body {
 }
 
 .userProfile {
-  padding-top: 5.5rem;
+  padding-top: 5.8rem;
 }
 .GridListTitle .ListSubheader {
   text-align: left;

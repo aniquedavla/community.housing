@@ -122,7 +122,7 @@ export default function CustomizedDialogs() {
             autoFocus
             margin="dense"
             id="reason"
-            label="Why this community?"
+            label="Describe the Community"
             type="reason"
             fullWidth
           />
