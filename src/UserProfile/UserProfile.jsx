@@ -182,7 +182,7 @@ class UserProfile extends React.Component {
             <LogOut/>
           </Typography>
           <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-            Something here to give the footer a purpose!
+            End of your profile!
           </Typography>
         </footer>
         {/* End footer */}

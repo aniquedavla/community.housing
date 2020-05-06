@@ -69,22 +69,26 @@ export default function CustomizedDialogs(props) {
     var user = Fire.auth().currentUser;
     const email = document.getElementById("emailaddress").value;
     const bio = document.getElementById("bio").value;
+    var database = Fire.database();
+    var uid = Fire.auth().currentUser.uid;
+    var ref = database.ref('users').child(uid);
 
 
-    if(email !== "" && bio !== ""){
+    if(email !== ""){
 
       user.updateEmail(email).then(function() {
         // Update successful.
         }).catch(function(error) {
       // An error happened.
         });
-    
-        var database = Fire.database();
-        var uid = Fire.auth().currentUser.uid;
-        var ref = database.ref('users').child(uid);
-    
+  
         // ref.push(data);
         ref.update({'email': email});
+    }
+
+    if(bio !== ""){
+    
+        // ref.push(data);
         ref.update({'bio': bio});
     }
 
