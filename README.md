@@ -1,3 +1,6 @@
+# Project Describtion
+Community.housing solves this issue where a dedicated website helps  individuals belonging to a specific community find the right roommates. It allows for users to search for a community they belong to or create a new community unique to the platform. Users can search for housing in a specific community in a specific location, filter listings and contact the lister.
+
 # Git workflow
 
 ## Where to write your code
