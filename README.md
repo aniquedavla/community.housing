@@ -1,16 +1,22 @@
 # Project Describtion
 Community.housing solves this issue where a dedicated website helps  individuals belonging to a specific community find the right roommates. It allows for users to search for a community they belong to or create a new community unique to the platform. Users can search for housing in a specific community in a specific location, filter listings and contact the lister.
 
-# Importatn Links: 
+# Important Links: 
 ### How to Install React.js: 
 https://www.youtube.com/watch?v=00kXjx9k3Os&t=132s
 ### clone a github repo: 
 https://www.youtube.com/watch?v=OCiiJi7Bl18&t=105s
 
+## Dependencies to run the app
+> node
+> npm/nvm
 
-## Available Scripts
+## How to run the app - Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+Installs all the dependencies needed for the project as definied in the package.json file. 
 
 ### `npm start`
 
