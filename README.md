@@ -8,9 +8,8 @@ https://www.youtube.com/watch?v=00kXjx9k3Os&t=132s
 https://www.youtube.com/watch?v=OCiiJi7Bl18&t=105s
 
 ## Dependencies to run the app
-> node
-<br>
->npm/nvm
+> node<br>
+> npm/nvm
 
 ## How to run the app - Available Scripts
 
