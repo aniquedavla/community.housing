@@ -145,6 +145,7 @@ class HouseForm extends React.Component {
           imagesUrls: this.state.imagesUrls
         }
 
+
         storeRef.push(postData)
         
         //var postKey = storeRef.push().key;
@@ -152,7 +153,6 @@ class HouseForm extends React.Component {
         //this.storeHouseImages(postKey);
       });
 
-      window.location.href = '/FindHouse';
 
     }
   }
